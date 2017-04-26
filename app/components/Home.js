@@ -1,7 +1,8 @@
 import React from 'react';
-import Button from 'react-native-animated-button';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Navigator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, Navigator, Button } from 'react-native';
 import Main from './Main';
+import FavTeams from './FavTeams';
+import Registration from './Registration';
 
 export default class Home extends React.Component {
   constructor(props){
@@ -16,7 +17,11 @@ export default class Home extends React.Component {
       }
       this.handleChange = this.handleChange.bind(this);
 
-      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleLogin = this.handleLogin.bind(this);
+
+      this.registration = this.registration.bind(this);
+
+      this.handleGuest = this.handleGuest.bind(this);
   }
 
   handleChange(event){
@@ -26,9 +31,24 @@ export default class Home extends React.Component {
       })
   }
 
-  handleSubmit(){
+  handleLogin(){
     this.props.navigator.push({
+      title: 'Your Teams',
+      component: FavTeams
+    })
+  }
+
+  handleGuest(){
+      this.props.navigator.push({
+      title: 'Guest Login',
       component: Main
+    })
+  }
+
+  registration(){
+      this.props.navigator.push({
+      title: 'Profile Registration',
+      component: Registration
     })
   }
 
@@ -44,10 +64,13 @@ export default class Home extends React.Component {
             style={styles.searchInput}/>  
         <TouchableHighlight
             style={styles.button}
-            onPress={this.handleSubmit}
+            onPress={this.handleLogin}
             underlayColor="lightpink">
             <Text style={styles.buttonText}> Submit </Text>
         </TouchableHighlight>
+        <Button title="Register Profile" onPress={this.registration} />
+        <Button title="Continue As Guest" onPress={this.handleGuest} />
+        
 
       </View>
     );
