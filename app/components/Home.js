@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-native-animated-button';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, Navigator } from 'react-native';
+import Main from './Main';
 
 export default class Home extends React.Component {
   constructor(props){
@@ -12,10 +13,10 @@ export default class Home extends React.Component {
       this.state = {
           username: '',
           password: '',
-          isLoading: false,
-          error: false
       }
       this.handleChange = this.handleChange.bind(this);
+
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event){
@@ -25,18 +26,17 @@ export default class Home extends React.Component {
       })
   }
 
-  // handleSubmit(){
-  //     this.props.navigator.push({
-  //         title: Your Teams Page || "Select an Option",
-  //         component: Main,
-    
-  //     });
-  // }
+  handleSubmit(){
+    this.props.navigator.push({
+      component: Main
+    })
+  }
 
 
   render() {
     return (
       <View style={styles.mainContainer}>
+        <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
         <TextInput
             style={styles.searchInput}/>
@@ -44,12 +44,10 @@ export default class Home extends React.Component {
             style={styles.searchInput}/>  
         <TouchableHighlight
             style={styles.button}
-            onPress={this.handleSubmit.bind(this)}
-            underlayColor="green">
+            onPress={this.handleSubmit}
+            underlayColor="lightpink">
             <Text style={styles.buttonText}> Submit </Text>
         </TouchableHighlight>
-
-        {showErr}
 
       </View>
     );
@@ -60,10 +58,17 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         padding: 30,
-        marginTop: 65,
         flexDirection: 'column',
         justifyContent: 'center',
         backgroundColor: '#48BBEC'
+    },
+    header : {
+        marginBottom: 40,
+        fontSize: 60,
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontStyle: 'italic'
     },
     title: {
         marginBottom: 20,
@@ -98,8 +103,5 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center'
     },
-    loading: {
-      color: '#111'
-    }
 });
 
