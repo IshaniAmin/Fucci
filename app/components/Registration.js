@@ -13,7 +13,6 @@ export default class Main extends React.Component {
       <TextInput
             style={styles.searchInput}/>
     </View>
-  
     );
   }
 }

@@ -15,6 +15,7 @@ export default class Home extends React.Component {
           username: '',
           password: '',
       }
+
       this.handleChange = this.handleChange.bind(this);
 
       this.handleLogin = this.handleLogin.bind(this);
@@ -25,17 +26,19 @@ export default class Home extends React.Component {
   }
 
   handleChange(event){
-      this.setState({
-        //we grab the text from the input (TextInput below) because we binded scope to this from the input.
-          username: event.nativeEvent.text.toLowerCase()
-      })
+    this.setState({
+      //we grab the text from the input (TextInput below) because we binded scope to this from the input.
+        username: event.nativeEvent.text.toLowerCase()
+    })
   }
 
   handleLogin(){
     this.props.navigator.push({
       title: 'Your Teams',
+      // title: this.state.username + "'s Teams",
       component: FavTeams
     })
+    this.state.username = "";
   }
 
   handleGuest(){
@@ -59,9 +62,17 @@ export default class Home extends React.Component {
         <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
         <TextInput
-            style={styles.searchInput}/>
+            style={styles.searchInput}
+            value={this.state.username}
+            onChange={this.handleChange}
+            />
         <TextInput
-            style={styles.searchInput}/>  
+            style={styles.searchInput}
+            value={this.state.password}
+            onChange={this.handleChange}
+
+            />  
+
         <TouchableHighlight
             style={styles.button}
             onPress={this.handleLogin}

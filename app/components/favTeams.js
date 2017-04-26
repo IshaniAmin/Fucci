@@ -6,18 +6,12 @@ export default class FavTeams extends React.Component {
 
   render() {
     return (
-    <View style={styles.body}>
-      <View style={styles.header}>
-        <Text style={{fontSize: 60, color: 'black'}}>Fucci</Text>
-      </View>
-      <View style={styles.container}>
-        <Text style={{fontSize: 30, color: 'black'}}>Your Teams</Text>
-      </View>
+    <View style={styles.mainContainer}>
     {/* Your Teams List View*/}
       <View style={styles.container}>
-        <Text style={{fontSize: 20, fontWeight:'bold'}}>Club Team Name</Text>
+        <Text style={{fontSize: 20, fontWeight:'bold'}}>Team Name</Text>
         {/* Buttons: Match Facts, View Stories, and Visit Chat Room */}
-        <Text>Previous Match</Text>
+        <Text style={styles.previous}>Previous Match</Text>
         <View style={styles.previousMatch}>
           <Text>Home</Text>
           <Text>Away</Text>
@@ -36,28 +30,26 @@ export default class FavTeams extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  body : {
+  mainContainer : {
     flex: 1,
-  },
-  header: {
-    flex: .8,
-    width: '100%',
-    alignItems: 'center',
+    justifyContent: 'center',
   },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    padding: 20,
   },
   teamlinks: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-around',
   },
+  previous: {
+    margin: 20,
+    fontSize: 15,
+    alignItems: 'center',
+  },
   previousMatch: {
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-
+    justifyContent: 'space-between',
+    marginBottom: 50,
   },
 });
