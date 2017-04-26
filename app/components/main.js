@@ -4,9 +4,11 @@ import { View, Text, StyleSheet, ListView, TextInput } from 'react-native'
 
 export default class Main extends React.Component {
 
+  
+
   render() {
     return (
-    <View style={styles.body}>
+    <View style={styles.mainContainer}>
       <Text>Search Team/League</Text>
       <TextInput
             style={styles.searchInput}/>
@@ -17,8 +19,11 @@ export default class Main extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  body : {
+  mainContainer : {
     flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+
   },
   searchInput: {
     height: 50,
@@ -26,8 +31,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
     fontSize: 23,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: 'black',
     borderRadius: 8,
-    color: 'white'
+    color: 'black'
     },
 });

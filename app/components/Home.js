@@ -36,6 +36,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
+        <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
         <TextInput
             style={styles.searchInput}/>
@@ -44,7 +45,7 @@ export default class Home extends React.Component {
         <TouchableHighlight
             style={styles.button}
             onPress={this.handleSubmit}
-            underlayColor="green">
+            underlayColor="lightpink">
             <Text style={styles.buttonText}> Submit </Text>
         </TouchableHighlight>
 
@@ -57,13 +58,17 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         padding: 30,
-        marginTop: 65,
         flexDirection: 'column',
         justifyContent: 'center',
         backgroundColor: '#48BBEC'
     },
     header : {
-
+        marginBottom: 40,
+        fontSize: 60,
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontStyle: 'italic'
     },
     title: {
         marginBottom: 20,
