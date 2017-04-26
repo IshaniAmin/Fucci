@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, NavigatorIOS } from 'react-native';
 import Home from './app/components/Home';
+//import Main from './app/components/main'
 
 export default class App extends React.Component {
 
