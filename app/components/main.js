@@ -16,7 +16,7 @@ export default class Main extends React.Component {
 
   componentDidMount(){
     
-    fetch("http://api.football-api.com/2.0/matches?match_date=26.04.2017&to_date=26.04.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76")
+    fetch("http://api.football-api.com/2.0/matches?match_date=27.04.2017&to_date=27.04.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76")
     .then(res => res.json())
     .then(matches => {
       this.setState({
@@ -26,14 +26,15 @@ export default class Main extends React.Component {
   }
   
   handleShowMatchFacts = id => {
-    console.log(id)
+    console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matchFacts => {
-      console.log(matchFacts)
+      console.log('match facts', matchFacts)
+      let selectedMatch = matchFacts;
          this.setState({
         matches : this.state.matches.cloneWithRows([]),
-        matchFacts : this.state.matchFacts.cloneWithRows(matchFacts)
+        matchFacts : this.state.matchFacts.cloneWithRows([selectedMatch])
       })
     })
   }
@@ -59,7 +60,7 @@ export default class Main extends React.Component {
           style={styles.matches}
           dataSource={this.state.matchFacts}
           renderRow={(match) => 
-          <Text style={styles.item}> {match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>
+          <Text style={styles.matchFacts}> {match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>
           }
 
         />   
