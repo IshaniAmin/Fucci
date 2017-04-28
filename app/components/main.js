@@ -34,6 +34,9 @@ export default class Main extends React.Component {
         style={styles.matches}
         dataSource={this.state.matches}
         renderRow={(match) => <Text style={styles.item}>Home: {match.localteam_name} | Away: {match.visitorteam_name} </Text>}
+
+        renderRow={(match) => <Text style={styles.item}>{match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>}
+
       />
               
               
@@ -55,5 +58,15 @@ const styles = StyleSheet.create({
   item : {
     textAlign: 'center',
     marginBottom: 5
+     borderRadius: 4,
+    borderWidth: 5,
+    borderColor: 'green',
   },
+  item : {
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: 'red',
+    padding: 20,
+    textAlign: 'center',
+  }
 });
