@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ListView, TextInput } from 'react-native'
 
 
 export default class Main extends React.Component {
-    constructor() {
+  constructor() {
   super();
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   this.state = {
@@ -33,8 +33,6 @@ export default class Main extends React.Component {
     <ListView
         style={styles.matches}
         dataSource={this.state.matches}
-        renderRow={(match) => <Text style={styles.item}>Home: {match.localteam_name} | Away: {match.visitorteam_name} </Text>}
-
         renderRow={(match) => <Text style={styles.item}>{match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>}
 
       />
@@ -56,16 +54,10 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   item : {
-    textAlign: 'center',
-    marginBottom: 5
-     borderRadius: 4,
-    borderWidth: 5,
-    borderColor: 'green',
-  },
-  item : {
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: 'red',
+    borderColor: 'green',
+    marginBottom: 5,
     padding: 20,
     textAlign: 'center',
   }
