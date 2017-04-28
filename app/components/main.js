@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, Text, StyleSheet, ListView, TextInput } from 'react-native'
+import { View, Text, StyleSheet, ListView, TouchableHighlight } from 'react-native'
 
 
 export default class Main extends React.Component {
@@ -26,20 +26,28 @@ export default class Main extends React.Component {
     })
   }
   
+    handleShowMatchFacts(){
+      alert("yeahhhhhh")
+  }
+  
   render() {
     return (
     <View style={styles.mainContainer}>
-    <Text style={styles.header}>Todays Matches</Text>
-    <ListView
-        style={styles.matches}
-        dataSource={this.state.matches}
-        renderRow={(match) => <Text style={styles.item}>{match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>}
+      <Text 
+      style={styles.header}>
+      Todays Matches</Text>
+      <ListView
+          style={styles.matches}
+          dataSource={this.state.matches}
+          renderRow={(match) => 
+          <TouchableHighlight 
+          onPress={this.handleShowMatchFacts.bind(this)}
+          underlayColor="green"
+          ><Text style={styles.item}> {match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>
+         </TouchableHighlight>}
 
-      />
-              
-              
+        />    
     </View>
-  
     );
   }
 }
@@ -50,8 +58,10 @@ const styles = StyleSheet.create({
     padding: 20
   },
   header : {
-    marginBottom: 50,
     textAlign: 'center'
+  },
+  matches : {
+    marginTop: 20
   },
   item : {
     borderRadius: 4,
@@ -60,5 +70,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     padding: 20,
     textAlign: 'center',
-  }
+  },
 });
