@@ -19,20 +19,21 @@ export default class Main extends React.Component {
     .then(matches => {
       console.log(matches[0]); //check this out
       this.setState({
-        matches : this.state.matchescloneWithRows(matches)
+        matches : this.state.matches.cloneWithRows(matches)
  
 
       })
     })
   }
   
-
   render() {
     return (
     <View style={styles.mainContainer}>
+    <Text style={styles.header}>Todays Matches</Text>
     <ListView
+        style={styles.matches}
         dataSource={this.state.matches}
-        //renderRow={(song) => <Text style={styles.item}>Artist: {song.artist} | Song: {song.songName} | Votes: {song.votes}</Text>}
+        renderRow={(match) => <Text style={styles.item}>Home: {match.localteam_name} | Away: {match.visitorteam_name} </Text>}
       />
               
               
@@ -45,8 +46,14 @@ export default class Main extends React.Component {
 const styles = StyleSheet.create({
   mainContainer : {
     flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-
+    padding: 20
+  },
+  header : {
+    marginBottom: 50,
+    textAlign: 'center'
+  },
+  item : {
+    textAlign: 'center',
+    marginBottom: 5
   },
 });

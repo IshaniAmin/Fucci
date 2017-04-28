@@ -2,14 +2,12 @@ import React from 'react';
 import Button from 'react-native-animated-button';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, Navigator } from 'react-native';
 import Main from './main';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Navigator, Button } from 'react-native';
-import Main from './Main';
 import FavTeams from './FavTeams';
 import Registration from './Registration';
 
 export default class Home extends React.Component {
-  constructor(props){
-      super(props); //call the React Component that we're extending
+  constructor(){
+      super(); //call the React Component that we're extending
 
       //initialize username so we can hold onto the username that the user types into the input
       //isLoading boolean to toggle the spinner

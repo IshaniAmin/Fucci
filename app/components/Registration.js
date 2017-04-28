@@ -16,7 +16,7 @@ export default class Main extends React.Component {
     );
   }
 }
-
+    
 const styles = StyleSheet.create({
   mainContainer : {
     flex: 1,
