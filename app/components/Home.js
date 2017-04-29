@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, Button } from 'react-native';
-import Main from './Main';
-import FavTeams from './FavTeams';
+import main from './main';
+import FavTeams from './favTeams';
 import Registration from './Registration';
 
 export default class Home extends React.Component {
