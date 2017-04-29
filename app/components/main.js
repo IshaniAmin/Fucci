@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment';
+
 
 import { View, Text, StyleSheet, ListView, TouchableHighlight } from 'react-native'
 
@@ -10,13 +12,16 @@ export default class Main extends React.Component {
   this.state = {
     matches: ds.cloneWithRows([]),
     matchFacts: ds.cloneWithRows([])
-  };
+  }
   this.handleShowMatchFacts.bind(this)
 }
 
-  componentDidMount(){
-    
-    fetch("http://api.football-api.com/2.0/matches?match_date=27.04.2017&to_date=27.04.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76")
+ componentDidMount(){
+let newDate = moment().format('DD.MM.YYYY')
+ 
+ console.log(newDate) 
+
+   fetch(`http://api.football-api.com/2.0/matches?match_date=${newDate}&to_date=${newDate}&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matches => {
       this.setState({
@@ -25,12 +30,12 @@ export default class Main extends React.Component {
     })
   }
   
-  handleShowMatchFacts = id => {
-    console.log('match', id)
+ handleShowMatchFacts = id => {
+  //  console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matchFacts => {
-      console.log('match facts', matchFacts)
+   //   console.log('match facts', matchFacts)
       let selectedMatch = matchFacts;
          this.setState({
         matches : this.state.matches.cloneWithRows([]),
@@ -39,17 +44,17 @@ export default class Main extends React.Component {
     })
   }
   
-  render() {
+ render() {
     return (
     <View style={styles.mainContainer}>
-      <Text 
+      <Text
       style={styles.header}>
       Todays Matches</Text>
       <ListView
           style={styles.matches}
           dataSource={this.state.matches}
-          renderRow={(matches) => 
-          <TouchableHighlight 
+          renderRow={(matches) =>
+          <TouchableHighlight
           onPress={() => this.handleShowMatchFacts(matches.id)}
           underlayColor="green"
           ><Text style={styles.item}> {matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
@@ -59,13 +64,16 @@ export default class Main extends React.Component {
       <ListView
           style={styles.matches}
           dataSource={this.state.matchFacts}
-          renderRow={(match) => 
+          renderRow={(match) =>
           <Text style={styles.matchFacts}> {match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>
-          }
+        
+         }
 
-        />   
- 
-    </View>
+   
+
+       />   
+
+   </View>
     );
   }
 }
@@ -73,7 +81,7 @@ export default class Main extends React.Component {
 const styles = StyleSheet.create({
   mainContainer : {
     flex: 1,
-    padding: 20
+    padding: 20,
   },
   header : {
     textAlign: 'center'

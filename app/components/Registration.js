@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'react-native-animated-button';
+
 import { View, Text, StyleSheet, ListView, TextInput } from 'react-native'
 
 export default class Main extends React.Component {
