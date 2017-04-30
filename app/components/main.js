@@ -1,21 +1,30 @@
+
+'use strict'
+
+import React from 'react'
+import { View, Text, StyleSheet, ListView, TouchableHighlight, Navigator, Button } from 'react-native'
+
+import MatchPage from './match_page.js'
 import React from 'react';
 import moment from 'moment';
 
 
-import { View, Text, StyleSheet, ListView, TouchableHighlight } from 'react-native'
-
-
 export default class Main extends React.Component {
-  constructor() {
-  super();
+  constructor(props) {
+  super(props);
+
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   this.state = {
     matches: ds.cloneWithRows([]),
     matchFacts: ds.cloneWithRows([])
   }
   this.handleShowMatchFacts.bind(this)
+  this.handleSeeMatchFacts = this.handleSeeMatchFacts.bind(this);
 }
 
+  componentWillMount(){
+    
+    fetch("http://api.football-api.com/2.0/matches?match_date=27.04.2017&to_date=27.04.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76")
  componentDidMount(){
 let newDate = moment().format('DD.MM.YYYY')
  
@@ -28,7 +37,28 @@ let newDate = moment().format('DD.MM.YYYY')
         matches : this.state.matches.cloneWithRows(matches)
       })
     })
+<<<<<<< HEAD
      
+=======
+  }
+  
+  handleShowMatchFacts = (id) => {
+    console.log('match', id)
+    return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+    .then(res => res.json())
+  }
+  
+   handleSeeMatchFacts (){
+    this.props.navigator.push({
+      title: 'Match',
+      // title: this.state.username + "'s Teams",
+      component: MatchPage
+    })
+  }
+
+  render() {
+
+>>>>>>> ba71117e2bbccd4479d6e1038efb25398f386b6e
  handleShowMatchFacts = id => {
   //  console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
@@ -46,13 +76,18 @@ let newDate = moment().format('DD.MM.YYYY')
   
  render() {
     return (
+
     <View style={styles.mainContainer}>
+     <Text 
       <Text
       style={styles.header}>
       Todays Matches</Text>
       <ListView
           style={styles.matches}
           dataSource={this.state.matches}
+          renderRow={(matches) => 
+          <TouchableHighlight 
+          onPress={() => this.handleSeeMatchFacts(matches.id)}
           renderRow={(matches) =>
           <TouchableHighlight
           onPress={() => this.handleShowMatchFacts(matches.id)}
@@ -69,8 +104,6 @@ let newDate = moment().format('DD.MM.YYYY')
         
          }
 
-   
-
        />   
 
    </View>
@@ -83,12 +116,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  navbar : {
+    marginTop: 20,
+  },
   header : {
     textAlign: 'center'
   },
-  matches : {
-    marginTop: 20
-  },
+  // matches : {
+  //   marginTop: 20
+  // },
   item : {
     borderRadius: 4,
     borderWidth: 0.5,

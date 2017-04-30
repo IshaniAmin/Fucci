@@ -57,6 +57,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
+
       <View style={styles.mainContainer}>
         <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
