@@ -25,7 +25,7 @@ export default class Main extends React.Component {
   componentWillMount(){
     
     fetch("http://api.football-api.com/2.0/matches?match_date=27.04.2017&to_date=27.04.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76")
- componentDidMount(){
+
 let newDate = moment().format('DD.MM.YYYY')
  
  console.log(newDate) 
@@ -37,10 +37,10 @@ let newDate = moment().format('DD.MM.YYYY')
         matches : this.state.matches.cloneWithRows(matches)
       })
     })
-<<<<<<< HEAD
-     
-=======
+
   }
+
+
   
   handleShowMatchFacts = (id) => {
     console.log('match', id)
@@ -56,12 +56,10 @@ let newDate = moment().format('DD.MM.YYYY')
     })
   }
 
-  render() {
 
->>>>>>> ba71117e2bbccd4479d6e1038efb25398f386b6e
  handleShowMatchFacts = id => {
   //  console.log('match', id)
-    return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matchFacts => {
     // console.log('match facts ' + matchFacts)
@@ -78,7 +76,6 @@ let newDate = moment().format('DD.MM.YYYY')
     return (
 
     <View style={styles.mainContainer}>
-     <Text 
       <Text
       style={styles.header}>
       Todays Matches</Text>
