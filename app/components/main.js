@@ -2,8 +2,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, ListView, TouchableHighlight, Navigator, Button } from 'react-native';
 import moment from 'moment';
-
-
+import MatchPage from './MatchPage.js'
 export default class Main extends React.Component {
   constructor(props) {
   super(props);
@@ -14,7 +13,7 @@ export default class Main extends React.Component {
     matchFacts: ds.cloneWithRows([])
   }
   this.handleShowMatchFacts = this.handleShowMatchFacts.bind(this);
-  this.handleSeeMatchFacts = this.handleSeeMatchFacts.bind(this);
+
 }
 
 componentWillMount(){
@@ -33,27 +32,22 @@ console.log(newDate)
     })
   }
 
+/*res.json()   */
 handleShowMatchFacts = id => {
   //  console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
-    .then(res => res.json())
-    .then(matchFacts => {
+    .then(res => { 
    //   console.log('match facts', matchFacts)
-      let selectedMatch = matchFacts;
-         this.setState({
-        matches : this.state.matches.cloneWithRows([]),
-        matchFacts : this.state.matchFacts.cloneWithRows([selectedMatch])
-      })
-    })
-  }
-  
- handleSeeMatchFacts(){
-     this.props.navigator.push({
-      title: 'Match',
-       // title: this.state.username + "'s Teams",
-       component: MatchPage
+        this.props.navigator.push({
+        title: 'Match',
+        component: MatchPage,
+        passProps: {matchInfo: res}
+
      })
-   }
+       // console.log(res)
+  }) 
+}
+  
   
  
 render() {
@@ -74,13 +68,6 @@ render() {
          </TouchableHighlight>
           }
         />
-      <ListView
-          style={styles.matches}
-          dataSource={this.state.matchFacts}
-          renderRow={(match) =>
-          <Text style={styles.matchFacts}> {match.localteam_name} {match.localteam_score} - {match.visitorteam_score} {match.visitorteam_name} </Text>
-         }
-       />  
 
   </View>
     );
