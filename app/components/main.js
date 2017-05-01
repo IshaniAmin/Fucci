@@ -10,14 +10,15 @@ export default class Main extends React.Component {
  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   this.state = {
     matches: ds.cloneWithRows([]),
-    matchFacts: ds.cloneWithRows([])
+    matchFacts: ds.cloneWithRows([]),
+    leagueName: ds.cloneWithRows([])
   }
   this.handleShowMatchFacts = this.handleShowMatchFacts.bind(this);
 
 }
 
 componentWillMount(){
-    
+  let leagueId;
 
 let newDate = moment().format('DD.MM.YYYY')
 
@@ -26,8 +27,21 @@ console.log(newDate)
   fetch(`http://api.football-api.com/2.0/matches?match_date=${newDate}&to_date=${newDate}&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matches => {
+      leagueId = matches.map(function(match, value){
+        return matches[value].comp_id;
+      })
+      console.log(leagueId)
       this.setState({
         matches : this.state.matches.cloneWithRows(matches)
+      })
+    })
+    .then(() => {
+      fetch(`http://api.football-api.com/2.0/competitions/${leagueId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+      .then((res) => res.json())
+        .then((league) => {
+        this.setState({
+          league : this.state.leagueName.cloneWithRows([league])
+        })
       })
     })
   }
