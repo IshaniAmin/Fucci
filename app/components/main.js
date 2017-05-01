@@ -1,8 +1,6 @@
 'use strict'
 import React from 'react'
 import { View, Text, StyleSheet, ListView, TouchableHighlight, Navigator, Button } from 'react-native';
-import moment from 'moment';
-
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -11,30 +9,39 @@ export default class Main extends React.Component {
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   this.state = {
     matches: ds.cloneWithRows([]),
-    matchFacts: ds.cloneWithRows([])
+    matchFacts: ds.cloneWithRows([]),
+    leagueName: ds.cloneWithRows([])
   }
   this.handleShowMatchFacts = this.handleShowMatchFacts.bind(this);
-  this.handleSeeMatchFacts = this.handleSeeMatchFacts.bind(this);
+ 
 }
 
 componentWillMount(){
-    
-
-let newDate = moment().format('DD.MM.YYYY')
- 
- console.log(newDate) 
-
-   fetch(`http://api.football-api.com/2.0/matches?match_date=${newDate}&to_date=${newDate}&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+    let leagueId;
+   fetch(`http://api.football-api.com/2.0/matches?match_date=30.04.2017&to_date=30.04.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matches => {
+      leagueId = matches.map(function(match, value){
+        return matches[value].comp_id;
+      })
+      console.log(leagueId)
       this.setState({
         matches : this.state.matches.cloneWithRows(matches)
       })
     })
+    .then(() => {
+      fetch(`http://api.football-api.com/2.0/competitions/${leagueId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+      .then((res) => res.json())
+        .then((league) => {
+        this.setState({
+          league : this.state.leagueName.cloneWithRows([league])
+        })
+      })
+    })
   }
-
+  
  handleShowMatchFacts = id => {
-  //  console.log('match', id)
+   
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matchFacts => {
@@ -47,33 +54,26 @@ let newDate = moment().format('DD.MM.YYYY')
     })
   }
   
-  handleSeeMatchFacts(){
-     this.props.navigator.push({
-      title: 'Match',
-       // title: this.state.username + "'s Teams",
-       component: MatchPage
-     })
-   }
-  
-  
  render() {
+   
     return (
-
     <View style={styles.mainContainer}>
       <Text
       style={styles.header}>
       Todays Matches</Text>
+      
       <ListView
           style={styles.matches}
           dataSource={this.state.matches}
-          renderRow={(matches) =>
+          renderRow={(matches, league) =>
           <TouchableHighlight
           onPress={() => this.handleShowMatchFacts(matches.id)}
           underlayColor="green"
-          ><Text style={styles.item}> {matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
+          ><Text style={styles.item}>{matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
          </TouchableHighlight>
           }
         />
+        
       <ListView
           style={styles.matches}
           dataSource={this.state.matchFacts}
@@ -91,9 +91,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 20,
-  },
-  navbar: {
-    marginTop: 20,
   },
   header: {
     textAlign: 'center',
