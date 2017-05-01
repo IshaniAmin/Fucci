@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, Button } from 'react-native';
-import main from './main';
+import Main from './main';
 import FavTeams from './favTeams';
 import Registration from './Registration';
 
