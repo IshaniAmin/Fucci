@@ -27,24 +27,31 @@ console.log(newDate)
   fetch(`http://api.football-api.com/2.0/matches?match_date=${newDate}&to_date=${newDate}&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
     .then(matches => {
-      leagueId = matches.map(function(match, value){
-        return matches[value].comp_id;
+      
+    matches.map(function(match, index){
+        matches[index]['league_name'] = null;
+        return matches[index];
+      });
+    matches.map(function(match, index){
+     
+      let leagueId = matches[index].comp_id;
+      fetch(`http://api.football-api.com/2.0/competitions/${leagueId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+       .then(res => res.json())
+      .then((leagueInfo) => {
+       // console.log('test', leagueInfo.name)
+       const leagueName = leagueInfo.name;
+       matches[index].league_name = leagueName;
+        // console.log('name', matches[index].league_name)
+        return matches[index];
+        }); return matches[index];
+        
       })
-      console.log(leagueId)
       this.setState({
         matches : this.state.matches.cloneWithRows(matches)
       })
     })
-    .then(() => {
-      fetch(`http://api.football-api.com/2.0/competitions/${leagueId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
-      .then((res) => res.json())
-        .then((league) => {
-        this.setState({
-          league : this.state.leagueName.cloneWithRows([league])
-        })
-      })
-    })
   }
+
 
 /*res.json()   */
 handleShowMatchFacts = id => {
