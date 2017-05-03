@@ -11,7 +11,7 @@ export default class MatchPage extends React.Component {
   }
   componentWillMount(){
 
-    console.log(this.props.matchInfo._bodyInit)
+    console.log('mathc facts ' + this.props.matchInfo._bodyInit)
   }
 
 
@@ -22,41 +22,6 @@ export default class MatchPage extends React.Component {
 
       </View>
 
-
-
-
-
-
-
-
-
-
-
-      /* <TabBarIOS selectedTab={this.state.selectedTab}>
-        <TabBarIOS.Item
-          selected={this.state.selectedTab === 'welcome'}
-          // icon={uri:'featured'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'welcome'
-            });
-          }}>
-        	<Welcome />
-        </TabBarIOS.Item>
-
-        <TabBarIOS.Item
-          selected={this.state.selectedTab === 'more'}
-          // icon={uri:'contacts'}
-          text='c'
-          onPress={() => {
-            this.setState({
-              selectedTab: 'more'
-            });
-          }}>
-        <More />
-        </TabBarIOS.Item>
-
-      </TabBarIOS>*/
 		)
 	}
 }  
