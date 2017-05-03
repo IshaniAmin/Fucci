@@ -1,5 +1,4 @@
 'use strict'
-
 import React from 'react'
 import { StyleSheet, View, Component, Text, TabBarIOS } from 'react-native'
 import Welcome from './welcome.js'
@@ -30,14 +29,9 @@ export default class MatchPage extends React.Component {
         <Text style={styles.tabText}>{pageText}</Text>
         <Text style={styles.tabText}></Text>
       </View>
-<<<<<<< HEAD
 
-		)
-	}
-}  
-=======
-    );
-  };
+  		)
+  	} 
 
   render() {
     return (
@@ -90,6 +84,8 @@ export default class MatchPage extends React.Component {
   }
 }
 
+
+
 var styles = StyleSheet.create({
   tabContent: {
     flex: 1,
@@ -100,4 +96,3 @@ var styles = StyleSheet.create({
     margin: 50,
   },
 });
->>>>>>> 26a98bdaf2facd8646e78164f522cb8465870d38
