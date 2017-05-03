@@ -18,7 +18,6 @@ export default class Main extends React.Component {
 }
 
 componentWillMount(){
-  let leagueId;
 
 let newDate = moment().format('DD.MM.YYYY')
 
