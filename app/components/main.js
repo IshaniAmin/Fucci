@@ -61,10 +61,17 @@ handleShowMatchFacts = id => {
         this.props.navigator.push({
         title: 'Match',
         component: MatchPage,
-        passProps: {matchInfo: res}
+        passProps: {matchFacts: res}
 
      })
        // console.log(res)
+    
+       //this.setState({
+      //   title: 'Match',
+      //   component: MatchPage,
+      //   matchInfo: res
+      // })
+
   }) 
 }
   

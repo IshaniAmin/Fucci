@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { StyleSheet, View, Component, Text, TabBarIOS } from 'react-native'
+import { StyleSheet, View, Component, Text, TabBarIOS, ListView } from 'react-native'
 import Welcome from './welcome.js'
 import More from './more.js'
 import MatchFacts from './matchFacts.js'
@@ -14,15 +14,26 @@ export default class MatchPage extends React.Component {
   static displayName = 'TabBarExample';
 
   constructor(props) {
-    super(props);
+    super(props)
     
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       selectedTab: 'Match Facts',
-    };
+      matchFacts: this.props.matchFacts._bodyInit
+    }
+
   }
   componentWillMount(){
+   
+    //console.log(this.props.matchFacts._bodyInit)
+   //  const matchInfo = JSON.parse(this.props.matchFacts._bodyInit)
 
-    console.log('mathc facts ' + this.props.matchInfo._bodyInit)
+   // //console.log(matchInfo.venue)
+   //    this.setState({
+   //      [matchInfo]: matchInfo 
+   //    })
+
+      console.log(' This is the State ' + this.state.matchFacts['venue'])
   }
 
   _renderContent = (color: string, pageText: string) => {
@@ -37,6 +48,11 @@ export default class MatchPage extends React.Component {
 
   render() {
     return (
+      <View>
+        <Text>{/*i would render matchFacts Here*/}</Text>
+
+
+
       <TabBarIOS
         unselectedTintColor="black"
         tintColor="black"
@@ -82,6 +98,7 @@ export default class MatchPage extends React.Component {
           <More />
         </TabBarIOS.Item>
       </TabBarIOS>
+    </View>
     );
   }
 }
