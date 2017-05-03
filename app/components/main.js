@@ -3,6 +3,8 @@ import React from 'react'
 import { View, Text, StyleSheet, ListView, TouchableHighlight, Navigator, Button } from 'react-native';
 import moment from 'moment';
 import MatchPage from './MatchPage.js'
+import CameraSnap from './camera.js'
+
 export default class Main extends React.Component {
   constructor(props) {
   super(props);
@@ -14,6 +16,7 @@ export default class Main extends React.Component {
     leagueName: ds.cloneWithRows([])
   }
   this.handleShowMatchFacts = this.handleShowMatchFacts.bind(this);
+  this.handleCamera = this.handleCamera.bind(this);
 
 }
 
@@ -64,12 +67,17 @@ handleShowMatchFacts = id => {
         passProps: {matchInfo: res}
 
      })
-       // console.log(res)
   }) 
 }
+
+  handleCamera (){
+
+    this.props.navigator.push({
+        title: 'Camera',
+        component: CameraSnap
+     })
+  }
   
-  
- 
 render() {
     return (
 
@@ -77,6 +85,7 @@ render() {
       <Text
       style={styles.header}>
       Todays Matches</Text>
+      <Button title="Camera" onPress={this.handleCamera} />
       <ListView
           style={styles.matches}
           dataSource={this.state.matches}
