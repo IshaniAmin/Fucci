@@ -3,7 +3,7 @@
 import React from 'react'
 import { StyleSheet, View, Component, Text, TabBarIOS } from 'react-native'
 import Welcome from './welcome.js'
-import More from './more.js'
+import ChatRoom from './ChatRoom.js'
 import MatchFacts from './matchFacts.js'
 
 
@@ -79,7 +79,7 @@ export default class MatchPage extends React.Component {
               selectedTab: 'chatRoom',
             });
           }}>
-          <More />
+          <ChatRoom />
         </TabBarIOS.Item>
       </TabBarIOS>
     );
