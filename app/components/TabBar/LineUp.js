@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default class Welcome extends React.Component {
+export default class LineUp extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
 
-			<Text style={styles.description}>Welcome</Text>
+			<Text style={styles.description}>Line Up</Text>
 
 			</View>
 		)
