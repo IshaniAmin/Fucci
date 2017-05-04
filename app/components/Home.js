@@ -42,7 +42,7 @@ export default class Home extends React.Component {
 
   handleGuest(){
       this.props.navigator.push({
-      title: 'Guest Login',
+      title: 'Fucci',
       component: Main
     })
   }

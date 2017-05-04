@@ -59,12 +59,13 @@ console.log(newDate)
 handleShowMatchFacts = id => {
   //  console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
-    .then(res => { 
+    .then(res => res.json())
+      .then(matchInfo=> { 
    //   console.log('match facts', matchFacts)
         this.props.navigator.push({
         title: 'Match',
         component: MatchPage,
-        passProps: {matchFacts: res}
+        passProps: {'matchInfo' : matchInfo}
 
      })
        // console.log(res)

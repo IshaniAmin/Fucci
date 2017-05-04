@@ -18,47 +18,43 @@ export default class MatchPage extends React.Component {
     
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      selectedTab: 'Match Facts',
-      matchFacts: this.props.matchFacts._bodyInit
+      selectedTab: 'matchFacts',
+      matchInfo: [this.props.matchInfo._bodyInit]
     }
 
   }
   
   componentWillMount(){
    
-    //console.log(this.props.matchFacts._bodyInit)
-   //  const matchInfo = JSON.parse(this.props.matchFacts._bodyInit)
+  //   //console.log(this.props.matchFacts._bodyInit)
+  //  //  const matchInfo = JSON.parse(this.props.matchFacts._bodyInit)
 
-   // //console.log(matchInfo.venue)
-   //    this.setState({
-   //      [matchInfo]: matchInfo 
-   //    })
+  //  // //console.log(matchInfo.venue)
+  //  //    this.setState({
+  //  //      [matchInfo]: matchInfo 
+  //  //    })
 
-      console.log(' This is the State ' + this.state.matchFacts['venue'])
+      console.log(' This is the State ' + this.state.matchInfo)
   }
 
-  _renderContent = (color: string, pageText: string) => {
-    return (
-      <View style={[styles.tabContent, {backgroundColor: color}]}>
-        <Text style={styles.tabText}>{pageText}</Text>
-        <Text style={styles.tabText}></Text>
-      </View>
+  // _renderContent = (color: string, pageText: string) => {
+  //   return (
+  //     <View style={[styles.tabContent, {backgroundColor: color}]}>
+  //       <Text style={styles.tabText}>{pageText}</Text>
+  //       <Text style={styles.tabText}></Text>
+  //     </View>
 
-  		)
-  	} 
+  // 		)
+  // 	} 
 
   render() {
     return (
-      <View>
-        <Text>{/*i would render matchFacts Here*/}</Text>
-
-
 
       <TabBarIOS
         unselectedTintColor="black"
         tintColor="black"
         unselectedItemTintColor="red"
-        barTintColor="orange">
+        barTintColor="#004f8a">
         <TabBarIOS.Item
           icon={{uri: base64Icon, scale: 3}}
           renderAsOriginal
@@ -77,10 +73,10 @@ export default class MatchPage extends React.Component {
           title="Match Facts"
           badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
           badgeColor="black"
-          selected={this.state.selectedTab === 'Match Facts'}
+          selected={this.state.selectedTab === 'matchFacts'}
           onPress={() => {
             this.setState({
-              selectedTab: 'Match Facts',
+              selectedTab: 'matchFacts',
             });
           }}>
           <MatchFacts />
@@ -99,7 +95,7 @@ export default class MatchPage extends React.Component {
           <ChatRoom />
         </TabBarIOS.Item>
       </TabBarIOS>
-    </View>
+  
     );
   }
 }
@@ -107,6 +103,10 @@ export default class MatchPage extends React.Component {
 
 
 var styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: 20,
+  },
   tabContent: {
     flex: 1,
     alignItems: 'center',

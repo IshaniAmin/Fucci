@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TextInput, StyleSheet, View, Text } from 'react-native';
+import { TextInput, StyleSheet, View, Text, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import moment from 'moment';
 
@@ -57,6 +57,11 @@ export default class ChatRoom extends React.Component {
         <TextInput value={this.state.comment}
         onPress={this.onSend}
         style={styles.postComment}/>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <TextInput keyboardType='numeric'/>
+            </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }

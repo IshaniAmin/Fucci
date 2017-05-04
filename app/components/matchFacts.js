@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'orange',
+		backgroundColor: 'white',
 	},
 })
-class MatchFacts extends React.Component {
+
+export default class MatchFacts extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
@@ -29,5 +30,3 @@ class MatchFacts extends React.Component {
 		)
 	}
 }
-
-module.exports = MatchFacts;
