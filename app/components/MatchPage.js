@@ -21,6 +21,7 @@ export default class MatchPage extends React.Component {
       selectedTab: 'Match Facts',
     };
   }
+  
   componentWillMount(){
 
     console.log(this.props.matchInfo._bodyInit)

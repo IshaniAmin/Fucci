@@ -1,7 +1,6 @@
 'use strict'
 
 import React from 'react'
-
 import {StyleSheet, View, Component, Text} from 'react-native'
 
 
@@ -18,7 +17,8 @@ const styles = StyleSheet.create({
 		backgroundColor: 'pink',
 	},
 })
-class Welcome extends React.Component {
+
+export default class Welcome extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
@@ -29,5 +29,3 @@ class Welcome extends React.Component {
 		)
 	}
 }
-
-module.exports = Welcome;

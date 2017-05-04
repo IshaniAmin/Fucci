@@ -84,7 +84,7 @@ render() {
 
    <View style={styles.mainContainer}>
       <Text
-      style={styles.container}>
+      style={styles.title}>
       Todays Matches</Text>
       <ListView
           style={styles.matches}
@@ -100,7 +100,7 @@ render() {
          </View>
           }
         />
-      <Button title="Camera" onPress={this.handleCamera} />
+      {/*<Button title="Camera" onPress={this.handleCamera} />*/}
 
   </View>
     );
@@ -112,12 +112,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
-  navbar: {
-    marginTop: 20,
-  },
-  container: {
-    marginTop: 20,
+  title: {
+    marginTop: 50,
     textAlign: 'center',
+    fontSize: 20,
   },
   matches: {
     marginTop: 20,
