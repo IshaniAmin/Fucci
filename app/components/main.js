@@ -55,27 +55,19 @@ console.log(newDate)
   }
 
 
-/*res.json()   */
 handleShowMatchFacts = id => {
   //  console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
-    .then(res => res.json())
-      .then(matchInfo=> { 
-   //   console.log('match facts', matchFacts)
+      .then(res => res.json())
+        .then(factInfo => { 
+      //console.log(factInfo)
         this.props.navigator.push({
         title: 'Match',
         component: MatchPage,
-        passProps: {'matchInfo' : matchInfo}
-
+        passProps: {matchFacts: factInfo}
      })
-       // console.log(res)
-    
-       //this.setState({
-      //   title: 'Match',
-      //   component: MatchPage,
-      //   matchInfo: res
-      // })
-  }) 
+           
+   }) 
 }
 
   // handleCamera (){
@@ -84,7 +76,7 @@ handleShowMatchFacts = id => {
   //       title: 'Camera',
   //       component: CameraSnap
   //    })
-  // }
+   //}
   
 render() {
 
