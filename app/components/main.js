@@ -3,6 +3,7 @@ import React from 'react'
 import { View, Text, StyleSheet, ListView, TouchableHighlight, Navigator, Button } from 'react-native';
 import moment from 'moment';
 import MatchPage from './MatchPage.js'
+
 // import CameraSnap from './camera.js'
 
 export default class Main extends React.Component {
