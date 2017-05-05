@@ -27,30 +27,26 @@ export default class MatchPage extends React.Component {
   
   componentWillMount(){
    //this is the prop that was navigated over from matchPage
-<<<<<<< HEAD
+
   console.log(this.props.matchFacts)
-   
-=======
+
   //console.log(this.props.matchFacts)
 
 
     //console.log(matchInfo) 
->>>>>>> 0132e4ae7b7a1475a027f657be659743f431cced
   
         this.setState({
           matchInfo : this.props.matchFacts
         })
       
 
-<<<<<<< HEAD
+
   }
 
   componentDidMount(){
 
     //console.log('did mount ' + this.state.matchInfo)
-=======
 
->>>>>>> 0132e4ae7b7a1475a027f657be659743f431cced
   }
 
   // _renderContent = (color: string, pageText: string) => {
@@ -66,21 +62,12 @@ export default class MatchPage extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        {/*<Text style={styles.facts}>{this.state.matchInfo.localteam_name}</Text>*/}
+        <Text style={styles.facts}>{this.state.matchInfo.localteam_name}</Text>
 
 
-
-
-<<<<<<< HEAD
-
-
-
-        {/*<TabBarIOS
-=======
-       
+        {/*<TabBarIOS       
        
         <TabBarIOS
->>>>>>> 0132e4ae7b7a1475a027f657be659743f431cced
           unselectedTintColor="black"
           tintColor="black"
           unselectedItemTintColor="red"
@@ -127,53 +114,6 @@ export default class MatchPage extends React.Component {
           </TabBarIOS.Item>
         </TabBarIOS>*/}
       </View>
-    
-
-      <TabBarIOS
-        unselectedTintColor="black"
-        tintColor="black"
-        unselectedItemTintColor="red"
-        barTintColor="#004f8a">
-        <TabBarIOS.Item
-          icon={{uri: base64Icon, scale: 3}}
-          renderAsOriginal
-          title="LineUp"
-          selected={this.state.selectedTab === 'lineUp'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'lineUp',
-            });
-          }}>
-          <LineUp />
-        </TabBarIOS.Item>
-        
-        <TabBarIOS.Item
-          icon={{uri: base64Icon, scale: 3}}
-          title="Match Facts"
-          badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-          badgeColor="black"
-          selected={this.state.selectedTab === 'matchFacts'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'matchFacts',
-            });
-          }}>
-          <MatchFacts />
-        </TabBarIOS.Item>
-        
-        <TabBarIOS.Item
-          icon={{uri: base64Icon, scale: 3}}
-          renderAsOriginal
-          title="Chat Room"
-          selected={this.state.selectedTab === 'chatRoom'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'chatRoom',
-            });
-          }}>
-          <ChatRoom />
-        </TabBarIOS.Item>
-      </TabBarIOS>
   
     );
   }
