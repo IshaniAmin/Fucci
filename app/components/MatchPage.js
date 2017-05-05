@@ -4,6 +4,7 @@ import { StyleSheet, View, Component, Text, TabBarIOS, ListView } from 'react-na
 import LineUp from './TabBar/LineUp.js'
 import ChatRoom from './TabBar/ChatRoom.js'
 import MatchFacts from './TabBar/matchFacts.js'
+import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
 
 
 var base64Icon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABLCAQAAACSR7JhAAADtUlEQVR4Ac3YA2Bj6QLH0XPT1Fzbtm29tW3btm3bfLZtv7e2ObZnms7d8Uw098tuetPzrxv8wiISrtVudrG2JXQZ4VOv+qUfmqCGGl1mqLhoA52oZlb0mrjsnhKpgeUNEs91Z0pd1kvihA3ULGVHiQO2narKSHKkEMulm9VgUyE60s1aWoMQUbpZOWE+kaqs4eLEjdIlZTcFZB0ndc1+lhB1lZrIuk5P2aib1NBpZaL+JaOGIt0ls47SKzLC7CqrlGF6RZ09HGoNy1lYl2aRSWL5GuzqWU1KafRdoRp0iOQEiDzgZPnG6DbldcomadViflnl/cL93tOoVbsOLVM2jylvdWjXolWX1hmfZbGR/wjypDjFLSZIRov09BgYmtUqPQPlQrPapecLgTIy0jMgPKtTeob2zWtrGH3xvjUkPCtNg/tm1rjwrMa+mdUkPd3hWbH0jArPGiU9ufCsNNWFZ40wpwn+62/66R2RUtoso1OB34tnLOcy7YB1fUdc9e0q3yru8PGM773vXsuZ5YIZX+5xmHwHGVvlrGPN6ZSiP1smOsMMde40wKv2VmwPPVXNut4sVpUreZiLBHi0qln/VQeI/LTMYXpsJtFiclUN+5HVZazim+Ky+7sAvxWnvjXrJFneVtLWLyPJu9K3cXLWeOlbMTlrIelbMDlrLenrjEQOtIF+fuI9xRp9ZBFp6+b6WT8RrxEpdK64BuvHgDk+vUy+b5hYk6zfyfs051gRoNO1usU12WWRWL73/MMEy9pMi9qIrR4ZpV16Rrvduxazmy1FSvuFXRkqTnE7m2kdb5U8xGjLw/spRr1uTov4uOgQE+0N/DvFrG/Jt7i/FzwxbA9kDanhf2w+t4V97G8lrT7wc08aA2QNUkuTfW/KimT01wdlfK4yEw030VfT0RtZbzjeMprNq8m8tnSTASrTLti64oBNdpmMQm0eEwvfPwRbUBywG5TzjPCsdwk3IeAXjQblLCoXnDVeoAz6SfJNk5TTzytCNZk/POtTSV40NwOFWzw86wNJRpubpXsn60NJFlHeqlYRbslqZm2jnEZ3qcSKgm0kTli3zZVS7y/iivZTweYXJ26Y+RTbV1zh3hYkgyFGSTKPfRVbRqWWVReaxYeSLarYv1Qqsmh1s95S7G+eEWK0f3jYKTbV6bOwepjfhtafsvUsqrQvrGC8YhmnO9cSCk3yuY984F1vesdHYhWJ5FvASlacshUsajFt2mUM9pqzvKGcyNJW0arTKN1GGGzQlH0tXwLDgQTurS8eIQAAAABJRU5ErkJggg==';
@@ -24,7 +25,7 @@ export default class MatchPage extends React.Component {
       events: ds.cloneWithRows([])
     }
 
-      this.handleNavigate = this.handleNavigate.bind(this);
+      this.handleNavigation = this.handleNavigation.bind(this);
 
   }
   
@@ -91,23 +92,40 @@ export default class MatchPage extends React.Component {
 
   }
 
+  handleNavigation() {
 
-  handleNavigate(id) {
-        let  tabId = id.toUpperCase() 
+          this.props.navigator.push({
+          title: 'Match',
+          component: ChatRoom
+       })
+          
+  }
 
-    console.log('working', tabId);
-        this.props.navigator.push({
-        component: `${tabId}`,
-        // passProps: {
-        //   ex1: this.state.ex2,
-        })
-   }
 
   render() {
 
     return (
 
       <View style={styles.mainContainer}>
+      <NavBar>
+        <NavButton 
+
+        onPress={() => 
+
+          this.handleNavigation()}>
+          <NavButtonText>
+            {"Button"}
+          </NavButtonText>
+        </NavButton>
+        <NavTitle>
+          {"App"}
+        </NavTitle>
+        <NavButton onPress={() => alert('hi')}>
+          <NavButtonText>
+            {"Button"}
+          </NavButtonText>
+        </NavButton>
+      </NavBar>
         
           <Text style={styles.facts}>{this.state.gameTime}</Text>
           <Text>{this.state.matchInfo.localteam_name} vs {this.state.matchInfo.visitorteam_name}</Text>
