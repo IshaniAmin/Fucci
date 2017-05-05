@@ -19,8 +19,9 @@ export default class MatchPage extends React.Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       selectedTab: 'matchFacts',
-
-      matchInfo: {}
+      matchInfo: {},
+      gameTime: '',
+      events: ds.cloneWithRows([])
     }
 
   }
@@ -44,25 +45,63 @@ export default class MatchPage extends React.Component {
   }
 
   componentDidMount(){
+  
 
-    //console.log('did mount ' + this.state.matchInfo)
+      let game= '';
+
+      if(this.state.matchInfo.localteam_score === "?"){
+       console.log('gametime', this.state.matchInfo.time)
+       game = this.state.matchInfo.time
+        // game = this.state.matchInfo.time;
+        // console.log('game', game)
+         // return game;
+    }else{
+      var localScore = this.state.matchInfo.localteam_score;
+      var awayScore = this.state.matchInfo.visitorteam_score;
+      console.log(localScore)
+      game = localScore + ' - ' + awayScore;
+  } 
+
+    console.log('did mount ' + this.state.matchInfo)
+    this.setState({
+      gameTime: game
+    })
+
+
+    let events = this.state.matchInfo.events;
+
+        if(events == []){
+          console.log('nothing')
+        } else{
+            events.map(function(event, index){
+              return events[index]
+            })
+        } 
+
+        this.setState({
+          events: this.state.events.cloneWithRows(events)
+        })
 
   }
 
-  // _renderContent = (color: string, pageText: string) => {
-  //   return (
-  //     <View style={[styles.tabContent, {backgroundColor: color}]}>
-  //       <Text style={styles.tabText}>{pageText}</Text>
-  //       <Text style={styles.tabText}></Text>
-  //     </View>
-
-  // 		)
-  // 	} 
 
   render() {
+
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.facts}>{this.state.matchInfo.localteam_name}</Text>
+        
+          <Text style={styles.facts}>{this.state.gameTime}</Text>
+          <Text>{this.state.matchInfo.localteam_name} vs {this.state.matchInfo.visitorteam_name}</Text>
+
+            <ListView
+              style={styles.matches}
+          dataSource={this.state.events}
+          renderRow={(event) =>
+          <View>
+          <Text>{event.type}</Text>
+         </View>
+          }
+        />
 
 
         {/*<TabBarIOS       
@@ -125,9 +164,11 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   facts: {
-    fontSize: 60,
+    fontSize: 50,
   },
   tabContent: {
     flex: 1,
