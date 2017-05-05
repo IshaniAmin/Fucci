@@ -83,6 +83,14 @@ export default class MatchPage extends React.Component {
         } else{
             events.map(function(event, index){
               return events[index]
+
+                if(event.type == 'subst'){
+                  let playerIn = event.player;
+                  let playerOut = event.assist;
+
+                  console.log('Out: ' + playerOut + ' In: ' + playerIn);
+                }   
+
             })
         }  
 
