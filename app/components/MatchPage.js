@@ -88,7 +88,7 @@ export default class MatchPage extends React.Component {
                 selectedTab: 'lineUp',
               });
             }}>
-            <Welcome />
+            <LineUp />
           </TabBarIOS.Item>
           
           <TabBarIOS.Item
@@ -102,7 +102,7 @@ export default class MatchPage extends React.Component {
                 selectedTab: 'matchFacts',
               });
             }}>
-            <MatchFacts />
+            <MatchFacts propsToCall={this.props.matchFacts}/>
           </TabBarIOS.Item>
           
           <TabBarIOS.Item
