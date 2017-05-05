@@ -11,8 +11,8 @@ export default class Main extends React.Component {
   super(props);
 
  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-  this.state = {
-    matches: ds.cloneWithRows([]),
+  this.state = {    matches: ds.cloneWithRows([]),
+
     matchFacts: ds.cloneWithRows([]),
     leagueName: ds.cloneWithRows([])
   }
