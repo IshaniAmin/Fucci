@@ -28,19 +28,18 @@ export default class MatchPage extends React.Component {
    //this is the prop that was navigated over from matchPage
   //console.log(this.props.matchFacts)
    
-   //json.parse method
-      const matchInfo = this.props.matchFacts
-
-    //console.log(matchInfo) 
   
         this.setState({
           matchInfo : this.props.matchFacts
-        }, () => {
-          debugger;
         })
       
 
-    
+   console.log(this.state.matchInfo)
+  }
+
+  componentDidMount(){
+
+    console.log('did mount ' + this.state.matchInfo.localteam_name)
   }
 
   // _renderContent = (color: string, pageText: string) => {
@@ -55,11 +54,9 @@ export default class MatchPage extends React.Component {
 
   render() {
     return (
-      <View>
-
-       
-       
-        <TabBarIOS
+      <View style={styles.mainContainer}>
+        <Text style={styles.facts}>{this.state.matchInfo.localteam_name}</Text>
+      {/*  <TabBarIOS
           unselectedTintColor="black"
           tintColor="black"
           unselectedItemTintColor="red"
@@ -103,7 +100,7 @@ export default class MatchPage extends React.Component {
             }}>
             <ChatRoom />
           </TabBarIOS.Item>
-        </TabBarIOS>
+        </TabBarIOS>*/}
       </View>
     
     );
@@ -116,6 +113,9 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 20,
+  },
+  facts: {
+    fontSize: 60,
   },
   tabContent: {
     flex: 1,
