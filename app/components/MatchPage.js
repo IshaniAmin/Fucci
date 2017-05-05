@@ -26,7 +26,7 @@ export default class MatchPage extends React.Component {
   
   componentWillMount(){
    //this is the prop that was navigated over from matchPage
-  //console.log(this.props.matchFacts)
+  console.log(this.props.matchFacts)
    
   
         this.setState({
@@ -34,12 +34,11 @@ export default class MatchPage extends React.Component {
         })
       
 
-   console.log(this.state.matchInfo)
   }
 
   componentDidMount(){
 
-    console.log('did mount ' + this.state.matchInfo.localteam_name)
+    //console.log('did mount ' + this.state.matchInfo)
   }
 
   // _renderContent = (color: string, pageText: string) => {
@@ -55,8 +54,15 @@ export default class MatchPage extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.facts}>{this.state.matchInfo.localteam_name}</Text>
-      {/*  <TabBarIOS
+        {/*<Text style={styles.facts}>{this.state.matchInfo.localteam_name}</Text>*/}
+
+
+
+
+
+
+
+        {/*<TabBarIOS
           unselectedTintColor="black"
           tintColor="black"
           unselectedItemTintColor="red"
@@ -85,9 +91,10 @@ export default class MatchPage extends React.Component {
                 selectedTab: 'matchFacts',
               });
             }}>
-            <MatchFacts />
-          </TabBarIOS.Item>
+           
+           {/*<MatchFacts propsToCall={this.props.matchFacts} />*/}
           
+          {/*</TabBarIOS.Item>
           <TabBarIOS.Item
             icon={{uri: base64Icon, scale: 3}}
             renderAsOriginal

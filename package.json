@@ -21,10 +21,14 @@
   "dependencies": {
     "expo": "^16.0.0",
     "moment": "^2.18.1",
-    "react": "16.0.0-alpha.6",
+    "react": "^16.0.0-alpha.12",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-transition-group": "^15.5.2",
+    "react-dom": "^15.5.4",
     "react-native": "^0.43.4",
     "react-native-camera": "^0.7.0",
     "react-native-gifted-chat": "^0.1.4",
-    "react-native-swipeout": "^2.0.13"
+    "react-native-swipeout": "^2.0.13",
+    "reactstrap": "^4.5.0"
   }
 }
