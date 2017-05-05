@@ -119,55 +119,7 @@ export default class MatchPage extends React.Component {
           </TabBarIOS.Item>
         </TabBarIOS>
       </View>
-    
 
-      <TabBarIOS
-        unselectedTintColor="black"
-        tintColor="black"
-        unselectedItemTintColor="red"
-        barTintColor="#004f8a">
-        <TabBarIOS.Item
-          icon={{uri: base64Icon, scale: 3}}
-          renderAsOriginal
-          title="LineUp"
-          selected={this.state.selectedTab === 'lineUp'}
-          onPress={() => {this.handleNavigate(this.state.selectedTab)
-            // this.setState({
-            //   selectedTab: 'lineUp'
-            // });
-          }}>
-          <LineUp />
-        </TabBarIOS.Item>
-        
-        <TabBarIOS.Item
-          icon={{uri: base64Icon, scale: 3}}
-          title="Match Facts"
-          badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-          badgeColor="black"
-          selected={this.state.selectedTab === 'MatchFacts'}
-          onPress={() => {this.handleNavigate(this.state.selectedTab)
-            // this.setState({
-            //   selectedTab: 'matchFacts',
-            // });
-          }}>
-          <MatchFacts />
-        </TabBarIOS.Item>
-        
-        <TabBarIOS.Item
-          icon={{uri: base64Icon, scale: 3}}
-          renderAsOriginal
-          title="Chat Room"
-          selected={this.state.selectedTab === 'chatRoom'}
-          onPress={() => {
-            this.handleNavigate(this.state.selectedTab)
-            // this.setState({
-            //   selectedTab: 'chatRoom',
-            // });
-          }}>
-          <ChatRoom />
-        </TabBarIOS.Item>
-      </TabBarIOS>
-  
     );
   }
 }
