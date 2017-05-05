@@ -24,9 +24,16 @@ export default class MatchPage extends React.Component {
       events: ds.cloneWithRows([])
     }
 
+      this.handleNavigate = this.handleNavigate.bind(this);
+
   }
   
   componentWillMount(){
+
+   
+    // console.log(this.state.matchInfo)
+    // const matchInfo = JSON.parse(this.props.matchFacts._bodyInit)
+
    //this is the prop that was navigated over from matchPage
 
   console.log(this.props.matchFacts)
@@ -85,9 +92,21 @@ export default class MatchPage extends React.Component {
   }
 
 
+  handleNavigate(id) {
+        let  tabId = id.toUpperCase() 
+
+    console.log('working', tabId);
+        this.props.navigator.push({
+        component: `${tabId}`,
+        // passProps: {
+        //   ex1: this.state.ex2,
+        })
+   }
+
   render() {
 
     return (
+
       <View style={styles.mainContainer}>
         
           <Text style={styles.facts}>{this.state.gameTime}</Text>
@@ -106,6 +125,9 @@ export default class MatchPage extends React.Component {
 
         {/*<TabBarIOS       
        
+
+      <View>
+
         <TabBarIOS
           unselectedTintColor="black"
           tintColor="black"
@@ -121,7 +143,7 @@ export default class MatchPage extends React.Component {
                 selectedTab: 'lineUp',
               });
             }}>
-            <Welcome />
+            <LineUp />
           </TabBarIOS.Item>
           
           <TabBarIOS.Item
@@ -135,8 +157,8 @@ export default class MatchPage extends React.Component {
                 selectedTab: 'matchFacts',
               });
             }}>
-           
-           {/*<MatchFacts propsToCall={this.props.matchFacts} />*/}
+
+
           
           {/*</TabBarIOS.Item>
           <TabBarIOS.Item
@@ -153,7 +175,7 @@ export default class MatchPage extends React.Component {
           </TabBarIOS.Item>
         </TabBarIOS>*/}
       </View>
-  
+
     );
   }
 }
