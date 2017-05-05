@@ -28,6 +28,7 @@ export default class MatchPage extends React.Component {
 
   }
   
+
   componentWillMount(){
 
    
@@ -53,7 +54,7 @@ export default class MatchPage extends React.Component {
 
   componentDidMount(){
   
-
+    //display score
       let game= '';
 
       if(this.state.matchInfo.localteam_score === "?"){
@@ -74,8 +75,8 @@ export default class MatchPage extends React.Component {
       gameTime: game
     })
 
-
-    let events = this.state.matchInfo.events;
+//displays the event
+    const events = this.state.matchInfo.events;
 
         if(events == []){
           console.log('nothing')
@@ -83,13 +84,29 @@ export default class MatchPage extends React.Component {
             events.map(function(event, index){
               return events[index]
             })
-        } 
+        }  
 
         this.setState({
           events: this.state.events.cloneWithRows(events)
         })
 
-  }
+
+        
+          events.map(function(event, index){
+            if(event.type == 'subst'){
+              let playerIn = event.player;
+              let playerOut = event.assist;
+
+              console.log('Out: ' + playerOut + ' In: ' + playerIn);
+            }
+
+          })
+ 
+
+
+ }
+
+
 
 
   handleNavigate(id) {
@@ -117,7 +134,8 @@ export default class MatchPage extends React.Component {
           dataSource={this.state.events}
           renderRow={(event) =>
           <View>
-          <Text>{event.type}</Text>
+          <Text>{'Action: ' + event.type}</Text>
+          <Text>{'Player: ' + event. player}</Text>
          </View>
           }
         />
