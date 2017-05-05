@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, Button, Video } from 'react-native';
 import Main from './main';
 import FavTeams from './favTeams';
 import Registration from './Registration';
@@ -59,6 +59,27 @@ export default class Home extends React.Component {
     return (
 
       <View style={styles.mainContainer}>
+
+ 
+   {/* <Video source={uri: "https://www.youtube.com/watch?v=KY2uGNFSL_o"}   
+    //    rate={1.0}                     // 0 is paused, 1 is normal. 
+    //    volume={1.0}                   // 0 is muted, 1 is normal. 
+    //    muted={true}                  // Mutes the audio entirely. 
+    //    paused={false}                 // Pauses playback entirely. 
+    //    resizeMode="cover"             // Fill the whole screen at aspect ratio. 
+    //    repeat={true}                  // Repeat forever. 
+    //    playInBackground={true}       // Audio continues to play when app entering background. 
+    //    playWhenInactive={false}       // [iOS] Video continues to play when control or notification center are shown. 
+    //    progressUpdateInterval={250.0} // [iOS] Interval to fire onProgress (default to ~250ms) 
+    //    onLoadStart={this.loadStart}   // Callback when video starts to load 
+    //    onLoad={this.setDuration}      // Callback when video loads 
+    //    onProgress={this.setTime}      // Callback every ~250ms with currentTime 
+    //    onEnd={this.onEnd}             // Callback when playback finishes 
+    //    onError={this.videoError}      // Callback when video cannot be loaded 
+    //    onBuffer={this.onBuffer} // Callback when remote video is buffering 
+    //    style={styles.backgroundVideo} />*/}
+ 
+
         <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
         <TextInput
@@ -137,5 +158,13 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center'
     },
+    backgroundVideo: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+  },
 });
+
 
