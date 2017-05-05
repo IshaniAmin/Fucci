@@ -22,11 +22,13 @@ export default class MatchPage extends React.Component {
       matchInfo: this.props.matchInfo._bodyInit
     }
 
+      this.handleNavigate = this.handleNavigate.bind(this);
+
   }
   
   componentWillMount(){
    
-    console.log(this.state.matchInfo)
+    // console.log(this.state.matchInfo)
     // const matchInfo = JSON.parse(this.props.matchFacts._bodyInit)
 
   //  // //console.log(matchInfo.venue)
@@ -47,6 +49,17 @@ export default class MatchPage extends React.Component {
   // 		)
   // 	} 
 
+  handleNavigate(id) {
+        let  tabId = id.toUpperCase() 
+
+    console.log('working', tabId);
+        this.props.navigator.push({
+        component: `${tabId}`,
+        // passProps: {
+        //   ex1: this.state.ex2,
+        })
+   }
+
   render() {
     return (
 
@@ -60,10 +73,10 @@ export default class MatchPage extends React.Component {
           renderAsOriginal
           title="LineUp"
           selected={this.state.selectedTab === 'lineUp'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'lineUp',
-            });
+          onPress={() => {this.handleNavigate(this.state.selectedTab)
+            // this.setState({
+            //   selectedTab: 'lineUp'
+            // });
           }}>
           <LineUp />
         </TabBarIOS.Item>
@@ -73,11 +86,11 @@ export default class MatchPage extends React.Component {
           title="Match Facts"
           badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
           badgeColor="black"
-          selected={this.state.selectedTab === 'matchFacts'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'matchFacts',
-            });
+          selected={this.state.selectedTab === 'MatchFacts'}
+          onPress={() => {this.handleNavigate(this.state.selectedTab)
+            // this.setState({
+            //   selectedTab: 'matchFacts',
+            // });
           }}>
           <MatchFacts />
         </TabBarIOS.Item>
@@ -88,9 +101,10 @@ export default class MatchPage extends React.Component {
           title="Chat Room"
           selected={this.state.selectedTab === 'chatRoom'}
           onPress={() => {
-            this.setState({
-              selectedTab: 'chatRoom',
-            });
+            this.handleNavigate(this.state.selectedTab)
+            // this.setState({
+            //   selectedTab: 'chatRoom',
+            // });
           }}>
           <ChatRoom />
         </TabBarIOS.Item>
