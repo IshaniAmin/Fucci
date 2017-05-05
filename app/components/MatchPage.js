@@ -19,7 +19,8 @@ export default class MatchPage extends React.Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       selectedTab: 'matchFacts',
-      matchInfo: this.props.matchInfo._bodyInit
+
+      matchInfo: {}
     }
 
       this.handleNavigate = this.handleNavigate.bind(this);
@@ -27,16 +28,25 @@ export default class MatchPage extends React.Component {
   }
   
   componentWillMount(){
+
    
     // console.log(this.state.matchInfo)
     // const matchInfo = JSON.parse(this.props.matchFacts._bodyInit)
 
-  //  // //console.log(matchInfo.venue)
-  //  //    this.setState({
-  //  //      [matchInfo]: matchInfo 
-  //  //    })
+   //this is the prop that was navigated over from matchPage
+  //console.log(this.props.matchFacts)
 
-      // console.log(' This is the State ' + matchInfo)
+
+    //console.log(matchInfo) 
+  
+        this.setState({
+          matchInfo : this.props.matchFacts
+        }, () => {
+          debugger;
+        })
+      
+
+
   }
 
   // _renderContent = (color: string, pageText: string) => {
@@ -62,6 +72,54 @@ export default class MatchPage extends React.Component {
 
   render() {
     return (
+      <View>
+        <TabBarIOS
+          unselectedTintColor="black"
+          tintColor="black"
+          unselectedItemTintColor="red"
+          barTintColor="#004f8a">
+          <TabBarIOS.Item
+            icon={{uri: base64Icon, scale: 3}}
+            renderAsOriginal
+            title="LineUp"
+            selected={this.state.selectedTab === 'lineUp'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'lineUp',
+              });
+            }}>
+            <Welcome />
+          </TabBarIOS.Item>
+          
+          <TabBarIOS.Item
+            icon={{uri: base64Icon, scale: 3}}
+            title="Match Facts"
+            badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+            badgeColor="black"
+            selected={this.state.selectedTab === 'matchFacts'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'matchFacts',
+              });
+            }}>
+            <MatchFacts />
+          </TabBarIOS.Item>
+          
+          <TabBarIOS.Item
+            icon={{uri: base64Icon, scale: 3}}
+            renderAsOriginal
+            title="Chat Room"
+            selected={this.state.selectedTab === 'chatRoom'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'chatRoom',
+              });
+            }}>
+            <ChatRoom />
+          </TabBarIOS.Item>
+        </TabBarIOS>
+      </View>
+    
 
       <TabBarIOS
         unselectedTintColor="black"
