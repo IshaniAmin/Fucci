@@ -160,7 +160,7 @@ var styles = StyleSheet.create({
   //   // paddingLeft: 8,
   // },
   title: {
-    fontSize: 17,
+    fontSize: 25,
     letterSpacing: 0.5,
     color: '#626262',
     fontWeight: '500',
@@ -168,5 +168,6 @@ var styles = StyleSheet.create({
   },
   event:{
     backgroundColor: 'green',
+    alignItems: 'center',
   },
 });
