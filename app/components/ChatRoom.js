@@ -29,6 +29,16 @@ export default class ChatRoom extends React.Component {
             avatar: 'https://lh6.googleusercontent.com/-asX3qUmQTns/AAAAAAAAAAI/AAAAAAAACNs/Jx4_cyhzRwU/photo.jpg',
           },
         },
+           {
+          _id: 2,
+          text: 'Ready for the game?? Lets Go!!',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://lh6.googleusercontent.com/-asX3qUmQTns/AAAAAAAAAAI/AAAAAAAACNs/Jx4_cyhzRwU/photo.jpg',
+          },
+        },
       ],
     });
   }
