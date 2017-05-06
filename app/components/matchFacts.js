@@ -33,12 +33,9 @@ export default class MatchFacts extends React.Component {
   componentWillMount(){
    //this is the prop that was navigated over from matchPage
   //console.log(this.props.matchFacts)
-   
-  
         this.setState({
           matchInfo : this.props.matchFacts
         })
-      
 
    console.log(this.state.matchInfo)
   }
