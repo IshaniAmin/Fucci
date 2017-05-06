@@ -14,7 +14,8 @@ export default class Main extends React.Component {
   this.state = {    matches: ds.cloneWithRows([]),
 
     matchFacts: ds.cloneWithRows([]),
-    leagueName: ds.cloneWithRows([])
+    leagueName: ds.cloneWithRows([]),
+    time: moment().format('DD.MM.YYYY'),
   }
   this.handleShowMatchFacts = this.handleShowMatchFacts.bind(this);
   // this.handleCamera = this.handleCamera.bind(this);
@@ -23,9 +24,9 @@ export default class Main extends React.Component {
 
 componentWillMount(){
 
-let newDate = moment().format('DD.MM.YYYY')
+const newDate = moment().format('DD.MM.YYYY')
 
-console.log(newDate)
+console.log('Todays Date ' + newDate)
 
   fetch(`http://api.football-api.com/2.0/matches?match_date=${newDate}&to_date=${newDate}&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
@@ -85,20 +86,20 @@ render() {
 
    <View style={styles.mainContainer}>
       <Text
-      style={styles.title}>
-      Todays Matches</Text>
+      style={styles.title}>Todays Matches</Text>
+      <Text style={styles.title}>{this.state.time}</Text>
       <ListView
           style={styles.matches}
           dataSource={this.state.matches}
           renderRow={(matches) =>
-          <View>
-            <Text>{matches.league_name}</Text>
-            <TouchableHighlight
-            onPress={() => this.handleShowMatchFacts(matches.id)}
-            underlayColor="green"
-            ><Text style={styles.item}> {matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
-           </TouchableHighlight>
-         </View>
+            <View>
+              <Text>{matches.league_name}</Text>
+              <TouchableHighlight
+              onPress={() => this.handleShowMatchFacts(matches.id)}
+              underlayColor="black"
+              ><Text style={styles.item}> {matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
+             </TouchableHighlight>
+            </View>
           }
         />
       {/*<Button title="Camera" onPress={this.handleCamera} />*/}
@@ -112,6 +113,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#48BBEC',
   },
   title: {
     marginTop: 50,
@@ -124,9 +126,10 @@ const styles = StyleSheet.create({
   item: {
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: 'green',
+    borderColor: 'black',
     marginBottom: 5,
     padding: 20,
     textAlign: 'center',
+    backgroundColor: 'white',
   },
 });
