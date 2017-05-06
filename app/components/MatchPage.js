@@ -131,12 +131,11 @@ export default class MatchPage extends React.Component {
           </NavButton>
         </NavBar>
       
-      {/*<View style={styles.mainContainer}>
+      <View style={styles.mainContainer}>
         <View style={styles.scoreboard}>
             <Text style={styles.facts}>{this.state.gameTime}</Text>
             <Text>{this.state.matchInfo.localteam_name} vs {this.state.matchInfo.visitorteam_name}</Text>
         </View>
-
             <ListView  
               style={styles.matches}
               dataSource={this.state.events}
@@ -149,7 +148,7 @@ export default class MatchPage extends React.Component {
                 </View>
                }
             />
-        </View>*/}
+        </View>
       </View>
 
 
@@ -157,29 +156,7 @@ export default class MatchPage extends React.Component {
   }
 
 
-  render{}
-   return(
-      <View style={styles.mainContainer}>
-        <View style={styles.scoreboard}>
-            <Text style={styles.facts}>{this.state.gameTime}</Text>
-            <Text>{this.state.matchInfo.localteam_name} vs {this.state.matchInfo.visitorteam_name}</Text>
-        </View>
-
-            <ListView  
-              style={styles.matches}
-              dataSource={this.state.events}
-              renderRow={(event) =>
-                <View style={styles.event}>
-                   <Text>{'Minute: ' + event.minute}</Text>
-                   <Text>{'Action: ' + event.type}</Text>
-                   <Text>{'Player: ' + event.player}</Text>
-                   <Text> </Text>
-                </View>
-               }
-            />
-        </View>
-      )
-  }
+  
 }
 
 var styles = StyleSheet.create({
