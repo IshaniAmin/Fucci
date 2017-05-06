@@ -32,7 +32,7 @@ componentDidMount(){
   fetch(`http://api.football-api.com/2.0/team/${localTeamId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
       .then(teamInfo => {
-      let players = teamInfo.squad
+      let starters = teamInfo.squad
 
       // let starters = players.filter( starter =>
       //       players.appearances !== 0;

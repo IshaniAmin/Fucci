@@ -55,14 +55,13 @@ export default class Home extends React.Component {
     })
   }
 
-
   render() {
     return (
 
       <View style={styles.mainContainer}>
 
- 
-        <Video
+
+      {/*<Video
           source={`http://techslides.com/demos/sample-videos/small.mp4`}
           rate={1.0}
           volume={1.0}
@@ -70,9 +69,8 @@ export default class Home extends React.Component {
           resizeMode={"cover"}
           repeat
           style={styles.video}
-        />
+        />*/}
  
-
         <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
         <TextInput

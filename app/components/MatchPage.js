@@ -138,11 +138,11 @@ export default class MatchPage extends React.Component {
               {"Line Up"}
             </NavButtonText>
           </NavButton>
-          <NavButton>
+          {/*<NavButton>
             <NavButtonText>
               {"Match Facts"}
             </NavButtonText>
-          </NavButton>
+          </NavButton>*/}
           <NavButton onPress={() => 
             this.handleChatRoom()}>
             <NavButtonText>

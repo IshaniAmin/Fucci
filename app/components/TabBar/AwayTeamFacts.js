@@ -31,26 +31,26 @@ componentDidMount(){
   fetch(`http://api.football-api.com/2.0/team/${awayTeamId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
       .then(teamfacts => {
-      let lineUp = teamfacts.squad
-      lineUp.map(function(match, index){
-          if(lineUp[index].position == 'G'){
-            lineUp[index].position = 'GoalKeeper'
-            return lineUp[index].position
-          }else if(lineUp[index].position == 'D'){
-            lineUp[index].position = 'Defender'
-            return lineUp[index].position
-          }else if(lineUp[index].position == 'M'){
-            lineUp[index].position = 'MidFielder'
-            return lineUp[index].position
-          }else if(lineUp[index].position == 'F'){
-            lineUp[index].position = 'Forward'
-            return lineUp[index].position
+      let starters = teamfacts.squad
+      starters.map(function(match, index){
+          if(starters[index].position == 'G'){
+            starters[index].position = 'GoalKeeper'
+            return starters[index].position
+          }else if(starters[index].position == 'D'){
+            starters[index].position = 'Defender'
+            return starters[index].position
+          }else if(starters[index].position == 'M'){
+            starters[index].position = 'MidFielder'
+            return starters[index].position
+          }else if(starters[index].position == 'A'){
+            starters[index].position = 'Forward'
+            return starters[index].position
           }
-          return lineUp[index]
+          return starters[index]
         })
         
         this.setState({
-          teamInfo: this.state.teamInfo.cloneWithRows(lineUp)
+          teamInfo: this.state.teamInfo.cloneWithRows(starters)
         })
       })
 
@@ -103,7 +103,7 @@ render() {
           dataSource={this.state.teamInfo}
           renderRow={(team) =>
           <View>
-            <Text>{team.name} - {team.position} </Text>
+            <Text style={styles.playerInfo}>{team.name} - {team.position} </Text>
           </View>
           }
         />
@@ -122,9 +122,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   matches: {
-    // padding: 20,
+    width: '100%',
   },
   teamName: {
+    paddingTop: 5,
     fontSize: 20,
+  },
+  playerInfo: {
+    flexDirection: 'row',
+    fontSize: 15,
+    textAlign: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black', 
+    marginBottom: 5,
   },
 });
