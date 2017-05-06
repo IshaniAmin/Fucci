@@ -1,41 +1,38 @@
 'use strict'
 import React from 'react'
 import { View, Text, StyleSheet, ListView } from 'react-native';
-import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav';
-import AwayFacts from './AwayTeamFacts.js';
+import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
+import HomeFacts from './HomeTeamFacts.js'
 
-
-export default class HomeFacts extends React.Component {
+export default class AwayFacts extends React.Component {
   constructor(props) {
   super(props);
 
  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   this.state = {
-    teamFacts: {},
-    teamInfo: ds.cloneWithRows([]),
-    teamName: ''
+    facts: {},
+    teamName: '',
+    teamInfo: ds.cloneWithRows([])
   }
-  this.handleAwayTeamFacts = this.handleAwayTeamFacts.bind(this);
+  this.handleHomeTeamFacts = this.handleHomeTeamFacts.bind(this);
 
 }
 
 componentWillMount(){
   
   this.setState({
-      teamFacts : this.props.teamFacts
+      facts : this.props.facts
     })
   }
 
 componentDidMount(){
 
-  let localTeamId = this.state.teamFacts.localteam_id;
-  fetch(`http://api.football-api.com/2.0/team/${localTeamId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+  let awayTeamId = this.state.facts.visitorteam_id;
+  fetch(`http://api.football-api.com/2.0/team/${awayTeamId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
-      .then(teamInfo => {
-      let lineUp = teamInfo.squad
+      .then(teamfacts => {
+      let lineUp = teamfacts.squad
       lineUp.map(function(match, index){
-        // if(lineUp[index].appearances > '10'){
-          // return lineUp[index] 
           if(lineUp[index].position == 'G'){
             lineUp[index].position = 'GoalKeeper'
             return lineUp[index].position
@@ -45,63 +42,61 @@ componentDidMount(){
           }else if(lineUp[index].position == 'M'){
             lineUp[index].position = 'MidFielder'
             return lineUp[index].position
-          }else if(lineUp[index].position == 'A'){
+          }else if(lineUp[index].position == 'F'){
             lineUp[index].position = 'Forward'
             return lineUp[index].position
           }
           return lineUp[index]
-        // } 
-      })
+        })
         
         this.setState({
           teamInfo: this.state.teamInfo.cloneWithRows(lineUp)
         })
       })
 
-    fetch(`http://api.football-api.com/2.0/team/${localTeamId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+    fetch(`http://api.football-api.com/2.0/team/${awayTeamId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
     .then(res => res.json())
       .then(name => {
+        // console.log('name', name.name)
 
         let teamName = name.name;
         
         this.setState({
           teamName: teamName
-        })   
+        })
+        
    })
   }
 
-  handleAwayTeamFacts(id) {
-    console.log('match', id)
-    fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
-    .then(res => res.json())
-      .then(awayFacts => {
+
+  handleHomeTeamFacts() {
       this.props.navigator.push({
-      title: 'Away',
-      component: AwayFacts,
-      passProps: {facts: awayFacts}
+      title: 'Home',
+      component: HomeFacts
    })
-  })
-}
+  }
 
 render() {
 
     return (
       <View style={styles.body}>
        <NavBar style={styles.navBar}>
-          <NavButton>
+          <NavButton
+          // onPress={() =>
+          //   this.handleHomeTeamFacts()
+          // }
+          >
             <NavButtonText>
               {"Home"}
             </NavButtonText>
           </NavButton>
-          <NavButton
-              onPress={() =>
-              this.handleAwayTeamFacts(this.state.teamFacts.id)}>
+          <NavButton>
             <NavButtonText>
               {"Away"}
             </NavButtonText>
           </NavButton>
         </NavBar>
-     <View style={styles.mainContainer}>
+      <View style={styles.mainContainer}>
         <Text style={styles.teamName}>{this.state.teamName}</Text>
         <ListView
           style={styles.matches}
