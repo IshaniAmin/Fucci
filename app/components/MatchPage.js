@@ -18,7 +18,7 @@ export default class MatchPage extends React.Component {
     
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      selectedTab: 'matchFacts',
+      // selectedTab: 'matchFacts',
       matchInfo: {},
       gameTime: '',
       events: ds.cloneWithRows([])
@@ -47,17 +47,17 @@ export default class MatchPage extends React.Component {
       let game= '';
 
       if(this.state.matchInfo.localteam_score === "?"){
-       console.log('gametime', this.state.matchInfo.time)
+       // console.log('gametime', this.state.matchInfo.time)
        game = this.state.matchInfo.time
         // game = this.state.matchInfo.time;
         // console.log('game', game)
          // return game;
-    }else{
-      var localScore = this.state.matchInfo.localteam_score;
-      var awayScore = this.state.matchInfo.visitorteam_score;
-      console.log(localScore)
-      game = localScore + ' - ' + awayScore;
-  } 
+        }else{
+          var localScore = this.state.matchInfo.localteam_score;
+          var awayScore = this.state.matchInfo.visitorteam_score;
+          // console.log(localScore)
+          game = localScore + ' - ' + awayScore;
+      } 
 
     console.log('did mount ' + this.state.matchInfo)
     this.setState({
@@ -77,7 +77,7 @@ export default class MatchPage extends React.Component {
                 let playerIn = event.player;
                 let playerOut = event.assist;
 
-                console.log('Out: ' + playerOut + ' In: ' + playerIn);
+                // console.log('Out: ' + playerOut + ' In: ' + playerIn);
               }   
           })
       }  
@@ -88,15 +88,15 @@ export default class MatchPage extends React.Component {
 
 
         
-          events.map(function(event, index){
-            if(event.type == 'subst'){
-              let playerIn = event.player;
-              let playerOut = event.assist;
+          // events.map(function(event, index){
+          //   if(event.type == 'subst'){
+          //     let playerIn = event.player;
+          //     let playerOut = event.assist;
 
-              console.log('Out: ' + playerOut + ' In: ' + playerIn);
-            }
+          //     // console.log('Out: ' + playerOut + ' In: ' + playerIn);
+          //   }
 
-          })
+          // })
  
 
 
@@ -109,11 +109,18 @@ export default class MatchPage extends React.Component {
    })
   }
 
-  handleLineUp() {
+  handleLineUp(id) {
+    console.log('match id', id)
+
+    fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+    .then(res => res.json())
+      .then(teamInfo => {
       this.props.navigator.push({
       title: 'Line Up',
-      component: LineUp
-   })
+      component: LineUp,
+      passProps: {teamFacts: teamInfo}
+      })
+    })
   }
 
 
@@ -126,7 +133,7 @@ export default class MatchPage extends React.Component {
 
           onPress={() => 
 
-            this.handleLineUp()}>
+            this.handleLineUp(this.state.matchInfo.id)}>
             <NavButtonText>
               {"Line Up"}
             </NavButtonText>
