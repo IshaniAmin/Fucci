@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { StyleSheet, View, Component, Text, TabBarIOS, ListView } from 'react-native'
-import LineUp from './TabBar/LineUp.js'
+import HomeFacts from './TabBar/HomeTeamFacts.js'
 import ChatRoom from './TabBar/ChatRoom.js'
 import MatchFacts from './TabBar/matchFacts.js'
 import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
@@ -9,9 +9,9 @@ import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
 
 
 export default class MatchPage extends React.Component {
-  static title = '<TabBarIOS>';
-  static description = 'Tab-based navigation.';
-  static displayName = 'TabBarExample';
+  // static title = '<TabBarIOS>';
+  // static description = 'Tab-based navigation.';
+  // static displayName = 'TabBarExample';
 
   constructor(props) {
     super(props)
@@ -88,15 +88,15 @@ export default class MatchPage extends React.Component {
 
 
         
-          // events.map(function(event, index){
-          //   if(event.type == 'subst'){
-          //     let playerIn = event.player;
-          //     let playerOut = event.assist;
+          events.map(function(event, index){
+            if(event.type == 'subst'){
+              let playerIn = event.player;
+              let playerOut = event.assist;
 
-          //     // console.log('Out: ' + playerOut + ' In: ' + playerIn);
-          //   }
+              // console.log('Out: ' + playerOut + ' In: ' + playerIn);
+            }
 
-          // })
+          })
  
 
 
@@ -116,8 +116,8 @@ export default class MatchPage extends React.Component {
     .then(res => res.json())
       .then(teamInfo => {
       this.props.navigator.push({
-      title: 'Line Up',
-      component: LineUp,
+      title: "Home",
+      component: HomeFacts,
       passProps: {teamFacts: teamInfo}
       })
     })
