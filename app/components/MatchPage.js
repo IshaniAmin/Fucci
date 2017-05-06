@@ -1,23 +1,24 @@
 'use strict'
 import React from 'react'
 import { StyleSheet, View, Component, Text, TabBarIOS, ListView } from 'react-native'
-import LineUp from './TabBar/LineUp.js'
+import HomeFacts from './TabBar/HomeTeamFacts.js'
 import ChatRoom from './TabBar/ChatRoom.js'
 import MatchFacts from './TabBar/matchFacts.js'
 import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav'
 import moment from 'moment';
 
+
 export default class MatchPage extends React.Component {
-  static title = '<TabBarIOS>';
-  static description = 'Tab-based navigation.';
-  static displayName = 'TabBarExample';
+  // static title = '<TabBarIOS>';
+  // static description = 'Tab-based navigation.';
+  // static displayName = 'TabBarExample';
 
   constructor(props) {
     super(props)
     
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      selectedTab: 'matchFacts',
+      // selectedTab: 'matchFacts',
       matchInfo: {},
       gameTime: '',
       events: ds.cloneWithRows([]),
@@ -33,7 +34,11 @@ export default class MatchPage extends React.Component {
 
    //this is the prop that was navigated over from matchPage
 
+
   //console.log(this.props.matchFacts)
+
+  console.log(this.props.matchFacts)
+
   
         this.setState({
           matchInfo : this.props.matchFacts
@@ -46,11 +51,12 @@ export default class MatchPage extends React.Component {
       let game= '';
 
       if(this.state.matchInfo.localteam_score === "?"){
-      // console.log('gametime', this.state.matchInfo.time)
+
        game = this.state.matchInfo.time
         // game = this.state.matchInfo.time;
         // console.log('game', game)
          // return game;
+
     }else{
 
       var localScore = this.state.matchInfo.localteam_score;
@@ -59,10 +65,18 @@ export default class MatchPage extends React.Component {
       game = localScore + ' - ' + awayScore;
   } 
 
+        }else{
+          var localScore = this.state.matchInfo.localteam_score;
+          var awayScore = this.state.matchInfo.visitorteam_score;
+          // console.log(localScore)
+          game = localScore + ' - ' + awayScore;
+      } 
+
     //console.log('did mount ' + this.state.matchInfo)
     this.setState({
       gameTime: game
     })
+
 
 //displays the event 
   const events = this.state.matchInfo.events;
@@ -74,6 +88,24 @@ export default class MatchPage extends React.Component {
           events.map(function(event, index){
             return events[index] 
         })
+
+//displays the event
+  const events = this.state.matchInfo.events;
+
+      if(events == []){
+        console.log('nothing')
+      } else{
+          events.map(function(event, index){
+            return events[index]
+
+              if(event.type == 'subst'){
+                let playerIn = event.player;
+                let playerOut = event.assist;
+
+                // console.log('Out: ' + playerOut + ' In: ' + playerIn);
+              }   
+          })
+
       }  
 
         this.setState({
@@ -88,6 +120,31 @@ export default class MatchPage extends React.Component {
 
 
  }
+
+  handleChatRoom() {
+      this.props.navigator.push({
+      title: 'Chat Room',
+      component: ChatRoom
+   })
+  }
+
+
+  handleLineUp(id) {
+    console.log('match id', id)
+
+    fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+    .then(res => res.json())
+      .then(teamInfo => {
+      this.props.navigator.push({
+      title: "Home",
+      component: HomeFacts,
+      passProps: {teamFacts: teamInfo}
+      })
+    })
+  }
+
+ }
+
 
 //navigate to chat room
   handleChatRoom() {
@@ -105,24 +162,41 @@ export default class MatchPage extends React.Component {
   }
 
 
-  render() {
 
+
+
+
+  render() {
 
     return (
       <View style={styles.body}>
         <NavBar style={styles.navBar}>
           <NavButton 
+
           onPress={() => 
             this.handleLineUp()}>
+
+
+          onPress={() => 
+
+            this.handleLineUp(this.state.matchInfo.id)}>
+
             <NavButtonText>
               {"Line Up"}
             </NavButtonText>
           </NavButton>
+
           <NavButton>
             <NavButtonText>
               {"Match Facts"}
             </NavButtonText>
           </NavButton>
+
+          {/*<NavButton>
+            <NavButtonText>
+              {"Match Facts"}
+            </NavButtonText>
+          </NavButton>*/}
           <NavButton onPress={() => 
             this.handleChatRoom()}>
             <NavButtonText>
@@ -130,7 +204,7 @@ export default class MatchPage extends React.Component {
             </NavButtonText>
           </NavButton>
         </NavBar>
-      
+
       <View style={styles.mainContainer}>
         <View style={styles.scoreboard}>
             <Text style={styles.facts}>{this.state.gameTime}</Text>
@@ -140,6 +214,7 @@ export default class MatchPage extends React.Component {
               style={styles.matches}
               dataSource={this.state.events}
               renderRow={(event) =>
+
                 <View style={styles.event}>
                    <Text>{'Minute: ' + event.minute}</Text>
                    <Text>{'Action: ' + event.type}</Text>
@@ -147,6 +222,13 @@ export default class MatchPage extends React.Component {
                    <Text> </Text>
                 </View>
                }
+
+            <View>
+              <Text>{'Action: ' + event.type}</Text>
+              <Text>{'Player: ' + event. player}</Text>
+            </View>
+            }
+
             />
         </View>
       </View>
@@ -165,9 +247,12 @@ var styles = StyleSheet.create({
     marginTop: 50,
   },
   mainContainer: {
+
     justifyContent: 'center',
   },
   scoreboard:{
+
+
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
@@ -175,6 +260,7 @@ var styles = StyleSheet.create({
   facts: {
     fontSize: 30,
   },
+
   // navBar: {
   //   borderTopWidth: 0,
   //   borderBottomColor: 'rgba(0, 0, 0, 0.1)',
@@ -195,6 +281,25 @@ var styles = StyleSheet.create({
   },
   event:{
     backgroundColor: 'green',
+
+
+  navBar: {
+    borderTopWidth: 0,
+    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    // paddingRight: 8,
+    // paddingLeft: 8,
+  },
+  title: {
+    fontSize: 17,
+    letterSpacing: 0.5,
+    color: '#626262',
+    fontWeight: '500',
+    textAlign: 'center',
 
   },
 });
