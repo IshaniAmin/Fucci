@@ -4404,6 +4404,10 @@ react-native-lightbox@oblador/react-native-lightbox#c84a8543d4511fe6a44c3d782074
   version "0.12.2"
   resolved "https://github.com/expo/react-native-maps/archive/v0.12.2-exp.1.tar.gz#1984bfe5a8a341dd3b44ad565cfcd1b25a5c2b03"
 
+react-native-nav@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-nav/-/react-native-nav-1.2.0.tgz#09c5de42a110f54bd8709a6513c26c7dda4a37e6"
+
 react-native-parsed-text@0.0.16:
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/react-native-parsed-text/-/react-native-parsed-text-0.0.16.tgz#788f6a51c3e2c224ad89101cc3d63f5993d37747"
