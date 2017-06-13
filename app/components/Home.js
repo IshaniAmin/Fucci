@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, Button } from 'react-native';
-import Video from 'react-native-video'
+import Video from 'react-native-video';
 import Main from './main';
 import FavTeams from './favTeams';
 import Registration from './Registration';
@@ -25,6 +25,12 @@ export default class Home extends React.Component {
 
       this.handleGuest = this.handleGuest.bind(this);
   }
+
+  // ComponentDidMount(){
+  //     // this.player.presentFullscreenPlayer()
+
+  //     this.player.seek(0)
+  // }
 
   handleChange(event){
     this.setState({
@@ -58,19 +64,20 @@ export default class Home extends React.Component {
   render() {
     return (
 
+      <View style={styles.container}>
+
+       {/* 
+          <Video 
+        source={'http://techslides.com/demos/sample-videos/small.mp4'}
+         rate={1.0}                               
+         volume={1.0}                            
+         muted={false}                            
+         resizeMode={"cover"}                     
+         repeat                        
+         style={styles.video} 
+         />
+        */} 
       <View style={styles.mainContainer}>
-
-
-      {/*<Video
-          source={`http://techslides.com/demos/sample-videos/small.mp4`}
-          rate={1.0}
-          volume={1.0}
-          muted={false}
-          resizeMode={"cover"}
-          repeat
-          style={styles.video}
-        />*/}
- 
         <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>
         <TextInput
@@ -93,7 +100,7 @@ export default class Home extends React.Component {
         </TouchableHighlight>
         <Button title="Register Profile" onPress={this.registration} />
         <Button title="Continue As Guest" onPress={this.handleGuest} />
-        
+        </View>
 
       </View>
     );
@@ -101,6 +108,9 @@ export default class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      flex: 1
+    },
     mainContainer: {
         flex: 1,
         padding: 30,
@@ -154,6 +164,6 @@ const styles = StyleSheet.create({
       top: 0,
       left: 0,
       bottom: 0,
-      right: 0,
+      right: 0
     },
 });
