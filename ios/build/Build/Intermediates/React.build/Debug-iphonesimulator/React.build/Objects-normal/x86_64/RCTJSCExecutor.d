@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Executors/RCTJSCExecutor.mm \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Executors/RCTJSCExecutor.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTJavaScriptExecutor.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Modules/JSCSamplingProfiler.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Modules/RCTDevSettings.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Executors/RCTJSCErrorHandling.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Profiler/RCTJSCProfiler.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/arronlinton/Desktop/PlayGround/Fucci/node_modules/react-native/React/Modules/RCTDevMenu.h
