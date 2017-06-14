@@ -64,8 +64,8 @@ export default class CameraSnap extends React.Component {
 
     this.state = {
       camera: {
-        aspect: Camera.constants.Aspect.fill,
-        captureTarget: Camera.constants.CaptureTarget.cameraRoll,
+        aspect: Camera.constants.Aspect.fit,
+        captureTarget: Camera.constants.CaptureTarget.disk,
         type: Camera.constants.Type.back,
         orientation: Camera.constants.Orientation.auto,
         flashMode: Camera.constants.FlashMode.auto,
@@ -129,7 +129,7 @@ export default class CameraSnap extends React.Component {
     } else if (this.state.camera.type === front) {
       icon = require('./../assets/ic_camera_front_white.png');
     }
-
+    console.log(icon);
     return icon;
   }
 
@@ -188,33 +188,37 @@ export default class CameraSnap extends React.Component {
           onZoomChanged={() => {}}
           defaultTouchToFocus
           mirrorImage={false}
+          captureAudio={true}
         />
+
         <View style={[styles.overlay, styles.topOverlay]}>
+      {/* Switch button for front and back camera */}
           <TouchableOpacity
             style={styles.typeButton}
-            onPress={this.switchType}
-          >
+            onPress={this.switchType}>
             <Image
               source={this.typeIcon}
             />
           </TouchableOpacity>
+
+        {/* Flash Button */}
           <TouchableOpacity
             style={styles.flashButton}
-            onPress={this.switchFlash}
-          >
+            onPress={this.switchFlash}>
             <Image
               source={this.flashIcon}
             />
           </TouchableOpacity>
         </View>
+
+
         <View style={[styles.overlay, styles.bottomOverlay]}>
           {
             !this.state.isRecording
             &&
             <TouchableOpacity
                 style={styles.captureButton}
-                onPress={this.takePicture}
-            >
+                onPress={this.takePicture}>
               <Image
                   source={require('./../assets/ic_photo_camera_36pt.png')}
               />
