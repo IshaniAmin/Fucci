@@ -110,10 +110,10 @@ export default class CameraSnap extends React.Component {
     let mirror;
     const { back, front } = Camera.constants.Type;
 
-    if (this.state.camera.type === back) {
+    if (this.state.camera.type == back) {
       newType = front;
       mirror = true;
-    } else if (this.state.camera.type === front) {
+    } else if (this.state.camera.type == front) {
       newType = back;
       mirror = false;
     }
@@ -125,20 +125,6 @@ export default class CameraSnap extends React.Component {
       },
     });
   }
-
-  // changeCameraType() {
-  //   if(this.state.camera.type === 'back') {
-  //     this.setState({
-  //       type: 'front',
-  //       mirrorMode: true
-  //     })
-  //   } else {
-  //     this.setState({
-  //       type: 'back',
-  //       mirrorMode: false
-  //     })
-  //   }
-  // }
 
   get typeIcon() {
     let icon;
@@ -153,6 +139,7 @@ export default class CameraSnap extends React.Component {
     return icon;
   }
 
+// Function that handles the camera flash
   switchFlash = () => {
     let newFlashMode;
     const { auto, on, off } = Camera.constants.FlashMode;
@@ -171,7 +158,7 @@ export default class CameraSnap extends React.Component {
       },
     });
   }
-
+// Function that handles the image source for the flash icon
   get flashIcon() {
     let icon;
     const { auto, on, off } = Camera.constants.FlashMode;
@@ -213,7 +200,7 @@ export default class CameraSnap extends React.Component {
       {/* Switch button for front and back camera */}
           <TouchableOpacity
             style={styles.typeButton}
-            onPress={this.changeCameraType}>
+            onPress={this.switchType}>
             <Image
               source={this.typeIcon}
             />
