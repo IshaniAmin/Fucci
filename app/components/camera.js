@@ -22,20 +22,22 @@ export default class CameraSnap extends Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}>
-          <TouchableHighlight onPress={this.takePicture.bind(this)}>
-            <View style={height:50,widith:50,backgroundColor:'blue'}></View>
+          <TouchableHighlight style={{borderRadius:100}} onPress={this.takePicture.bind(this)}>
+            <Text style={styles.capture}>CAPTURE</Text>
           </TouchableHighlight>
         </Camera>
       </View>
-    );
+    )
   }
 
-  takePicture() {
-    this.camera.capture({metadata: options})
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
+    takePicture() {
+      const options = {};
+      this.camera.capture({metadata: options})
+        .then((data) => console.log(data))
+        .catch(err => console.error(err));
+    }
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -47,13 +49,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: Dimensions.get('window').height,
-    width: Dimensions.get('windonw').width
+    width: Dimensions.get('window').width
   },
   capture: {
     flex: 0,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     borderRadius: 5,
-    color: '#000',
+    color: 'white',
     padding: 10,
     margin: 40
   }
