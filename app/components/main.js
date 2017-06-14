@@ -74,7 +74,6 @@ handleShowMatchFacts(id) {
   handleCamera (){
 
     this.props.navigator.push({
-        title: 'Camera',
         component: CameraSnap
      })
    }

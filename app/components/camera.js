@@ -7,12 +7,14 @@ import {
   TouchableOpacity,
   View,
   AppRegistry,
+  Text,
 } from 'react-native';
 import Camera from 'react-native-camera';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 20,
   },
   preview: {
     flex: 1,
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topOverlay: {
-    top: 0,
+    top: 15,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -46,10 +48,10 @@ const styles = StyleSheet.create({
     borderRadius: 40,
   },
   typeButton: {
-    padding: 5,
+    padding: 20,
   },
   flashButton: {
-    padding: 5,
+    padding: 20,
   },
   buttonsSpace: {
     width: 10,
@@ -65,10 +67,11 @@ export default class CameraSnap extends React.Component {
     this.state = {
       camera: {
         aspect: Camera.constants.Aspect.fit,
-        captureTarget: Camera.constants.CaptureTarget.disk,
+        captureTarget: Camera.constants.CaptureTarget.cameraRoll,
         type: Camera.constants.Type.back,
         orientation: Camera.constants.Orientation.auto,
         flashMode: Camera.constants.FlashMode.auto,
+        mirrorMode: false,
       },
       isRecording: false
     };
@@ -77,8 +80,8 @@ export default class CameraSnap extends React.Component {
   takePicture = () => {
     if (this.camera) {
       this.camera.capture()
-        .then((data) => console.log(data))
-        .catch(err => console.error(err));
+        .then((data) => console.log("Picture", data))
+        .catch(err => console.error("Error", err));
     }
   }
 
@@ -104,30 +107,47 @@ export default class CameraSnap extends React.Component {
 
   switchType = () => {
     let newType;
+    let mirror;
     const { back, front } = Camera.constants.Type;
 
     if (this.state.camera.type === back) {
       newType = front;
+      mirror = true;
     } else if (this.state.camera.type === front) {
       newType = back;
+      mirror = false;
     }
 
     this.setState({
       camera: {
-        ...this.state.camera,
         type: newType,
+        mirrorMode: mirror,
       },
     });
   }
+
+  // changeCameraType() {
+  //   if(this.state.camera.type === 'back') {
+  //     this.setState({
+  //       type: 'front',
+  //       mirrorMode: true
+  //     })
+  //   } else {
+  //     this.setState({
+  //       type: 'back',
+  //       mirrorMode: false
+  //     })
+  //   }
+  // }
 
   get typeIcon() {
     let icon;
     const { back, front } = Camera.constants.Type;
 
     if (this.state.camera.type === back) {
-      icon = require('./../assets/ic_camera_rear_white.png');
+      icon = require('./../assets/ic_camera_rear_white@3x.png');
     } else if (this.state.camera.type === front) {
-      icon = require('./../assets/ic_camera_front_white.png');
+      icon = require('./../assets/ic_camera_front_white@3x.png');
     }
     console.log(icon);
     return icon;
@@ -147,7 +167,6 @@ export default class CameraSnap extends React.Component {
 
     this.setState({
       camera: {
-        ...this.state.camera,
         flashMode: newFlashMode,
       },
     });
@@ -156,15 +175,14 @@ export default class CameraSnap extends React.Component {
   get flashIcon() {
     let icon;
     const { auto, on, off } = Camera.constants.FlashMode;
-
     if (this.state.camera.flashMode === auto) {
-      icon = require('./../assets/ic_flash_auto_white.png');
+      icon = require('./../assets/ic_flash_auto_white@3x.png');
     } else if (this.state.camera.flashMode === on) {
-      icon = require('./../assets/ic_flash_on_white.png');
+      icon = require('./../assets/ic_flash_on_white@3x.png');
     } else if (this.state.camera.flashMode === off) {
-      icon = require('./../assets/ic_flash_off_white.png');
+      icon = require('./../assets/ic_flash_off_white@3x.png');
     }
-
+    console.log(icon)
     return icon;
   }
 
@@ -187,7 +205,7 @@ export default class CameraSnap extends React.Component {
           onFocusChanged={() => {}}
           onZoomChanged={() => {}}
           defaultTouchToFocus
-          mirrorImage={false}
+          mirrorImage={this.state.mirrorMode}
           captureAudio={true}
         />
 
@@ -195,7 +213,7 @@ export default class CameraSnap extends React.Component {
       {/* Switch button for front and back camera */}
           <TouchableOpacity
             style={styles.typeButton}
-            onPress={this.switchType}>
+            onPress={this.changeCameraType}>
             <Image
               source={this.typeIcon}
             />
