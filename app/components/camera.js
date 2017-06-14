@@ -122,6 +122,7 @@ export default class CameraSnap extends React.Component {
       camera: {
         type: newType,
         mirrorMode: mirror,
+        flashMode: this.state.camera.flashMode,
       },
     });
   }
@@ -155,6 +156,8 @@ export default class CameraSnap extends React.Component {
     this.setState({
       camera: {
         flashMode: newFlashMode,
+        type: this.state.camera.type,
+        mirrorMode: this.state.camera.mirrorMode,
       },
     });
   }
