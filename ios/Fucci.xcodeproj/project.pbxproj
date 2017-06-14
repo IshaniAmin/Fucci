@@ -22,6 +22,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		2B2F4C2D1EF0C998006839F4 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0916E91EF06C02004A6BBF /* libRCTVideo.a */; };
+		2B3D61D21EF0C5050076E0C6 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3D61B91EF0C4BC0076E0C6 /* libRCTCamera.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -117,6 +119,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTVideo;
+		};
+		2B2F4C211EF0C97D006839F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B2F4C0B1EF0C97D006839F4 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		2B3D61B81EF0C4BC0076E0C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B3D61B11EF0C4BC0076E0C6 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -268,6 +284,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Fucci/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2181B18A28A544C094524E6D /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		2B2F4C0B1EF0C97D006839F4 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		2B3D61B11EF0C4BC0076E0C6 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Fucci-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fucci-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Fucci-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fucci-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B12E17A5090467FBE65732B /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
@@ -290,6 +308,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B2F4C2D1EF0C998006839F4 /* libRCTVideo.a in Frameworks */,
+				2B3D61D21EF0C5050076E0C6 /* libRCTCamera.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -453,6 +473,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2B2F4C0C1EF0C97D006839F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B2F4C221EF0C97D006839F4 /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B3D61B21EF0C4BC0076E0C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B3D61B91EF0C4BC0076E0C6 /* libRCTCamera.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +539,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2B2F4C0B1EF0C97D006839F4 /* RCTVideo.xcodeproj */,
+				2B3D61B11EF0C4BC0076E0C6 /* RCTCamera.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* Fucci */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FucciTests */,
@@ -649,6 +687,10 @@
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
 				},
 				{
+					ProductGroup = 2B3D61B21EF0C4BC0076E0C6 /* Products */;
+					ProjectRef = 2B3D61B11EF0C4BC0076E0C6 /* RCTCamera.xcodeproj */;
+				},
+				{
 					ProductGroup = 2B0916D31EF06C02004A6BBF /* Products */;
 					ProjectRef = 7E86C60B2F394B7ABDBA3297 /* RCTCamera.xcodeproj */;
 				},
@@ -683,6 +725,10 @@
 				{
 					ProductGroup = 2B0916D11EF06C02004A6BBF /* Products */;
 					ProjectRef = 2181B18A28A544C094524E6D /* RCTVideo.xcodeproj */;
+				},
+				{
+					ProductGroup = 2B2F4C0C1EF0C97D006839F4 /* Products */;
+					ProjectRef = 2B2F4C0B1EF0C97D006839F4 /* RCTVideo.xcodeproj */;
 				},
 				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
@@ -772,6 +818,20 @@
 			fileType = archive.ar;
 			path = libRCTVideo.a;
 			remoteRef = 2B0916E81EF06C02004A6BBF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2B2F4C221EF0C97D006839F4 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = 2B2F4C211EF0C97D006839F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2B3D61B91EF0C4BC0076E0C6 /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = 2B3D61B81EF0C4BC0076E0C6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {

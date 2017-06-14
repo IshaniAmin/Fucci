@@ -6,7 +6,7 @@
 	<dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		AUIrBGcTNpYaa37+xi2X9mNLemY=
+		APjJtC3Ecv64m2mKy31LTYzabVs=
 		</data>
 		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
 		<data>
@@ -223,7 +223,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ob9VySlsI9OUan1L4/CpSOZpkWk=
+		+QZs2VgI8tu1nDdIO86y7WBvAfA=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -239,7 +239,7 @@
 		</data>
 		<key>PlugIns/FucciTests.xctest/FucciTests</key>
 		<data>
-		5tSUv2RvX8iAwLygmvDPxjVQHhw=
+		xPeFakc1o82KhBAZ+KWoRLFsKtE=
 		</data>
 		<key>PlugIns/FucciTests.xctest/Info.plist</key>
 		<data>
@@ -256,11 +256,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AUIrBGcTNpYaa37+xi2X9mNLemY=
+			APjJtC3Ecv64m2mKy31LTYzabVs=
 			</data>
 			<key>hash2</key>
 			<data>
-			5wAn8GRFDEPo8Fff2WW6CVuurlQx+HZFWNL4dEyT+xI=
+			EoJCBfTtOVpE14lqg/09Hs4e1gzvi8OyzrCT69d8fh4=
 			</data>
 		</dict>
 		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
@@ -863,11 +863,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5tSUv2RvX8iAwLygmvDPxjVQHhw=
+			xPeFakc1o82KhBAZ+KWoRLFsKtE=
 			</data>
 			<key>hash2</key>
 			<data>
-			VYeAjfA26gGBt2/+4FU4SczHiGgQ98WI7Rxw8mBkbhY=
+			UQv3JeFVaYxWaHziaaJcA5XfXUtvIaza5h2mLDiRlqc=
 			</data>
 		</dict>
 		<key>PlugIns/FucciTests.xctest/Info.plist</key>

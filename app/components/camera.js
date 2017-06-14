@@ -10,7 +10,12 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 
-class CameraSnap extends Component {
+export default class CameraSnap extends Component {
+
+    clickedme(){
+      alert('winning');
+    }
+
   render() {
     return (
       <View style={styles.container}>
@@ -20,19 +25,19 @@ class CameraSnap extends Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}>
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+          <TouchableHighlight onPress={this.clickedme.bind(this)}>
+            <View style={height:50,widith:50,backgroundColor:'blue'}></View>
+          </TouchableHighlight>
         </Camera>
       </View>
     );
   }
 
-  takePicture() {
-    const options = {};
-    //options.location = ...
-    this.camera.capture({metadata: options})
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
-  }
+//   takePicture() {
+//     this.camera.capture({metadata: options})
+//       .then((data) => console.log(data))
+//       .catch(err => console.error(err));
+//   }
 }
 
 const styles = StyleSheet.create({
@@ -43,7 +48,9 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('windonw').width
   },
   capture: {
     flex: 0,
