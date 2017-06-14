@@ -2,9 +2,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, ListView, TouchableHighlight, Navigator, Button } from 'react-native';
 import moment from 'moment';
-import MatchPage from './MatchPage.js'
+import MatchPage from './MatchPage.js';
 
-// import CameraSnap from './camera.js'
+import CameraSnap from './camera.js';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class Main extends React.Component {
     time: moment().format('DD.MM.YYYY'),
   }
   this.handleShowMatchFacts = this.handleShowMatchFacts.bind(this);
-  // this.handleCamera = this.handleCamera.bind(this);
+  this.handleCamera = this.handleCamera.bind(this);
 
 } 
 
@@ -57,7 +57,7 @@ console.log('Todays Date ' + newDate)
   }
 
 
-handleShowMatchFacts = id => {
+handleShowMatchFacts(id) {
   //  console.log('match', id)
     return fetch(`http://api.football-api.com/2.0/matches/${id}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
       .then(res => res.json())
@@ -68,17 +68,16 @@ handleShowMatchFacts = id => {
         component: MatchPage,
         passProps: {matchFacts: factInfo}
      })
-           
-   }) 
+  }) 
 }
 
-  // handleCamera (){
+  handleCamera (){
 
-  //   this.props.navigator.push({
-  //       title: 'Camera',
-  //       component: CameraSnap
-  //    })
-   //}
+    this.props.navigator.push({
+        title: 'Camera',
+        component: CameraSnap
+     })
+   }
   
 render() {
 
@@ -97,12 +96,14 @@ render() {
               <TouchableHighlight
               onPress={() => this.handleShowMatchFacts(matches.id)}
               underlayColor="black"
-              ><Text style={styles.item}> {matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
+              >
+              <Text style={styles.item}> {matches.localteam_name} {matches.localteam_score} - {matches.visitorteam_score} {matches.visitorteam_name} </Text>
              </TouchableHighlight>
             </View>
           }
         />
-      {/*<Button title="Camera" onPress={this.handleCamera} />*/}
+
+        <Button title="Camera" onPress={this.handleCamera} />
 
   </View>
     );

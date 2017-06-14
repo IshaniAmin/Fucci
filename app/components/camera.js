@@ -80,9 +80,9 @@ export default class CameraSnap extends Component {
     const { back, front } = Camera.constants.Type;
 
     if (this.state.camera.type === back) {
-      icon = require('./assets/ic_camera_rear_white.png');
+      icon = require('../assets/ic_camera_rear_white.png');
     } else if (this.state.camera.type === front) {
-      icon = require('./assets/ic_camera_front_white.png');
+      icon = require('../assets/ic_camera_front_white.png');
     }
 
     return icon;
@@ -113,11 +113,11 @@ export default class CameraSnap extends Component {
     const { auto, on, off } = Camera.constants.FlashMode;
 
     if (this.state.camera.flashMode === auto) {
-      icon = require('./assets/ic_flash_auto_white.png');
+      icon = require('../assets/ic_flash_auto_white.png');
     } else if (this.state.camera.flashMode === on) {
-      icon = require('./assets/ic_flash_on_white.png');
+      icon = require('../assets/ic_flash_on_white.png');
     } else if (this.state.camera.flashMode === off) {
-      icon = require('./assets/ic_flash_off_white.png');
+      icon = require('../assets/ic_flash_off_white.png');
     }
 
     return icon;
@@ -142,64 +142,11 @@ export default class CameraSnap extends Component {
           onFocusChanged={() => {}}
           onZoomChanged={() => {}}
           defaultTouchToFocus
-          mirrorImage={false}
-        />
-        <View style={[styles.overlay, styles.topOverlay]}>
-          <TouchableOpacity
-            style={styles.typeButton}
-            onPress={this.switchType}
-          >
-            <Image
-              source={this.typeIcon}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.flashButton}
-            onPress={this.switchFlash}
-          >
-            <Image
-              source={this.flashIcon}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.overlay, styles.bottomOverlay]}>
-          {
-            !this.state.isRecording
-            &&
-            <TouchableOpacity
-                style={styles.captureButton}
-                onPress={this.takePicture}
-            >
-              <Image
-                  source={require('./assets/ic_photo_camera_36pt.png')}
-              />
-            </TouchableOpacity>
-            ||
-            null
-          }
-          <View style={styles.buttonsSpace} />
-          {
-              !this.state.isRecording
-              &&
-              <TouchableOpacity
-                  style={styles.captureButton}
-                  onPress={this.startRecording}
-              >
-                <Image
-                    source={require('./assets/ic_videocam_36pt.png')}
-                />
-              </TouchableOpacity>
-              ||
-              <TouchableOpacity
-                  style={styles.captureButton}
-                  onPress={this.stopRecording}
-              >
-                <Image
-                    source={require('./assets/ic_stop_36pt.png')}
-                />
-              </TouchableOpacity>
-          }
-        </View>
+          mirrorImage={false}>
+           <TouchableHighlight onPress={this.takePicture.bind(this)}>
+              <View style={height:50,widith:50,backgroundColor:'blue'}></View>
+            </TouchableHighlight>
+        </Camera>
       </View>
     );
   }
