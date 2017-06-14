@@ -25,7 +25,7 @@ export default class CameraSnap extends Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}>
-          <TouchableHighlight onPress={this.clickedme.bind(this)}>
+          <TouchableHighlight onPress={this.takePicture.bind(this)}>
             <View style={height:50,widith:50,backgroundColor:'blue'}></View>
           </TouchableHighlight>
         </Camera>
@@ -33,11 +33,11 @@ export default class CameraSnap extends Component {
     );
   }
 
-//   takePicture() {
-//     this.camera.capture({metadata: options})
-//       .then((data) => console.log(data))
-//       .catch(err => console.error(err));
-//   }
+  takePicture() {
+    this.camera.capture({metadata: options})
+      .then((data) => console.log(data))
+      .catch(err => console.error(err));
+  }
 }
 
 const styles = StyleSheet.create({
