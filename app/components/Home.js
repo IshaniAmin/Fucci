@@ -77,6 +77,8 @@ export default class Home extends React.Component {
          style={styles.video} 
          />
         */} 
+
+        
       <View style={styles.mainContainer}>
         <Text style={styles.header}>Fucci</Text>
         <Text style={styles.title}> Login </Text>

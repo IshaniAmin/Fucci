@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "00F24695E6092DCAFBA7B0D436FA5F65710FF4D2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "00F24695E6092DCAFBA7B0D436FA5F65710FF4D2" : 9223372036854775807,
+    "2501B3C9FEC41F7F1D7F74A4BF4EA9585CFC20D8" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "81398F3D-2161-4D3D-97F0-5E055733C345",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "00F24695E6092DCAFBA7B0D436FA5F65710FF4D2" : "Fucci\/",
+    "2501B3C9FEC41F7F1D7F74A4BF4EA9585CFC20D8" : "react-native-screcorder\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Fucci",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/Fucci.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:ArronJLinton\/Fucci.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "00F24695E6092DCAFBA7B0D436FA5F65710FF4D2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:maxs15\/react-native-screcorder.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2501B3C9FEC41F7F1D7F74A4BF4EA9585CFC20D8"
+    }
+  ]
+}

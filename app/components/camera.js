@@ -73,36 +73,57 @@ export default class CameraSnap extends React.Component {
         flashMode: Camera.constants.FlashMode.auto,
         mirrorMode: false,
       },
-      isRecording: false
+      // isRecording: false
     };
   }
 
+  // takePicture = () => {
+  //   if (this.camera) {
+  //     this.camera.capture()
+  //       .then((data) => console.log("Picture", data))
+  //       .catch(err => console.error("Error", err));
+  //   }
+  // }
+
   takePicture = () => {
-    if (this.camera) {
-      this.camera.capture()
-        .then((data) => console.log("Picture", data))
-        .catch(err => console.error("Error", err));
+        this.refs.cam.capture(function(err, data) {
+            console.log(err, data);
+        });
     }
+
+  onPressIn() {
+    const recordVideo = setTimeout(this.startRecording.bind(this), 100);
   }
 
   startRecording = () => {
-    if (this.camera) {
-      this.camera.capture({mode: Camera.constants.CaptureMode.video})
-          .then((data) => console.log(data))
-          .catch(err => console.error(err));
-      this.setState({
-        isRecording: true
-      });
-    }
+
+      this.refs.cam.capture({
+        mode: Camera.constants.CaptureMode.video,
+        totalSeconds: 10,
+      })
+      .then((data) => console.log(data))
+      .catch(err => console.error(err));
+      // this.setState({
+      //   isRecording: true
+      // });
+
   }
 
-  stopRecording = () => {
-    if (this.camera) {
-      this.camera.stopCapture();
-      this.setState({
-        isRecording: false
-      });
-    }
+  // stopRecording = () => {
+  //   if (this.camera) {
+  //     this.camera.stopCapture();
+  //     this.setState({
+  //       isRecording: false
+  //     });
+  //   }
+  // }
+
+  stopVideo = () => {
+
+      this.refs.cam.stopCapture();
+      // this.setState({
+      //   isRecording: false
+      // });
   }
 
   switchType = () => {
@@ -161,6 +182,8 @@ export default class CameraSnap extends React.Component {
       },
     });
   }
+
+
 // Function that handles the image source for the flash icon
   get flashIcon() {
     let icon;
@@ -176,6 +199,42 @@ export default class CameraSnap extends React.Component {
     return icon;
   }
 
+
+
+// ================ POST REQUEST TO FIREBASE =================== //
+
+    // storePicture(){
+
+    //       if (PicturePath) {
+    //         // Create the form data object
+    //         var data = new FormData();
+    //         data.append('picture', {uri: PicturePath, name: 'selfie.jpg', type: 'image/jpg'});
+
+    //         // Create the config object for the POST
+    //         // You typically have an OAuth2 token that you use for authentication
+    //         const config = {
+    //          method: 'POST',
+    //          headers: {
+    //            'Accept': 'application/json',
+    //            'Content-Type': 'multipart/form-data;',
+    //            'Authorization': 'Bearer ' + 'SECRET_OAUTH2_TOKEN_IF_AUTH',
+    //          },
+    //          body: data,
+    //         }
+
+    //         fetch("https://postman-echo.com/post", config)
+    //          .then((responseData) => {
+    //              // Log the response form the server
+    //              // Here we get what we sent to Postman back
+    //              console.log(responseData);
+    //          })
+    //          .catch(err => {
+    //            console.log(err);
+    //          })
+    //     }
+    //   }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -184,9 +243,7 @@ export default class CameraSnap extends React.Component {
           hidden
         />
         <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
+          ref="cam"
           style={styles.preview}
           aspect={this.state.camera.aspect}
           captureTarget={this.state.camera.captureTarget}
@@ -197,6 +254,7 @@ export default class CameraSnap extends React.Component {
           defaultTouchToFocus
           mirrorImage={this.state.mirrorMode}
           captureAudio={true}
+          keepAwake={true}
         />
 
         <View style={[styles.overlay, styles.topOverlay]}>
@@ -236,17 +294,18 @@ export default class CameraSnap extends React.Component {
           }
           <View style={styles.buttonsSpace} />
           {
-              !this.state.isRecording
-              &&
+             
               <TouchableOpacity
                   style={styles.captureButton}
-                  onPress={this.startRecording}
+                  onPressIn={this.onPressIn.bind(this)}
+                  onPressOut={this.stopVideo.bind(this)}
               >
                 <Image
                     source={require('./../assets/ic_videocam_36pt.png')}
                 />
               </TouchableOpacity>
               ||
+              {/*
               <TouchableOpacity
                   style={styles.captureButton}
                   onPress={this.stopRecording}
@@ -255,6 +314,7 @@ export default class CameraSnap extends React.Component {
                     source={require('./../assets/ic_stop_36pt.png')}
                 />
               </TouchableOpacity>
+           */}
           }
         </View>
       </View>
