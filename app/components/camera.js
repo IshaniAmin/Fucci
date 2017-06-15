@@ -67,7 +67,7 @@ export default class CameraSnap extends React.Component {
     this.state = {
       camera: {
         aspect: Camera.constants.Aspect.fit,
-        captureTarget: Camera.constants.CaptureTarget.cameraRoll,
+        captureTarget: Camera.constants.CaptureTarget.disk,
         type: Camera.constants.Type.back,
         orientation: Camera.constants.Orientation.auto,
         flashMode: Camera.constants.FlashMode.auto,
@@ -86,9 +86,15 @@ export default class CameraSnap extends React.Component {
   // }
 
   takePicture = () => {
-        this.refs.cam.capture(function(err, data) {
-            console.log(err, data);
-        });
+        this.refs.cam.capture({
+        mode: Camera.constants.CaptureMode.still,
+        path: 'disk',
+      })
+      .then((data) => {
+        console.log('picture', data)
+      })
+      .catch(err => console.error('error', err));
+
     }
 
   onPressIn() {
@@ -100,9 +106,13 @@ export default class CameraSnap extends React.Component {
       this.refs.cam.capture({
         mode: Camera.constants.CaptureMode.video,
         totalSeconds: 10,
+        path: 'disk'
       })
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
+      .then((data) => {
+        console.log('video', data.path)
+
+      })
+      .catch(err => console.error('error', err));
       // this.setState({
       //   isRecording: true
       // });
@@ -126,6 +136,8 @@ export default class CameraSnap extends React.Component {
       // });
   }
 
+// ============ Function that handles the front and back camera switch functionality ============= //
+
   switchType = () => {
     let newType;
     let mirror;
@@ -148,6 +160,7 @@ export default class CameraSnap extends React.Component {
     });
   }
 
+// ================== Handles front/back ============== //
   get typeIcon() {
     let icon;
     const { back, front } = Camera.constants.Type;
@@ -161,7 +174,7 @@ export default class CameraSnap extends React.Component {
     return icon;
   }
 
-// Function that handles the camera flash
+// =================  Handles Flash (On, off, and auto)  ==================== //
   switchFlash = () => {
     let newFlashMode;
     const { auto, on, off } = Camera.constants.FlashMode;
