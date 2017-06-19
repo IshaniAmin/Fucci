@@ -35,12 +35,21 @@ const styles = StyleSheet.create({
   },
   cancel: {
     position: 'absolute',
-    right: 20,
-    top: 20,
+    left: 20,
+    top: 25,
     backgroundColor: 'transparent',
     color: '#FFF',
     fontWeight: '600',
-    fontSize: 17,
+    fontSize: 25,
+  },
+  saveImage: {
+    position: 'absolute',
+    left: 20,
+    bottom: 35,
+    backgroundColor: 'transparent',
+    color: '#FFF',
+    fontWeight: '600',
+    fontSize: 25,
   },
   overlay: {
     position: 'absolute',
@@ -245,11 +254,27 @@ export default class CameraSnap extends React.Component {
           source={{ uri: this.state.path }}
           style={styles.preview}
         />
-        <Text
-          style={styles.cancel}
-          onPress={() => this.setState({ path: null })}
-        >Cancel
-        </Text>
+      {/* Header Section */}
+        <View style={[styles.overlay, styles.topOverlay]}>
+          <Text
+            style={styles.cancel}
+            onPress={() => this.setState({ path: null })}
+          >X
+          </Text>
+        </View>
+
+      {/* Footer section */}
+        <View style={[styles.overlay, styles.topOverlay]}>
+          <Text
+            style={styles.saveImage}
+            onPress={() => this.setState({ camera: {
+              captureTarget: Camera.constants.CaptureTarget.cameraRoll
+            }}
+          )}
+          >SAVE
+          </Text>
+        </View>
+
       </View>
     );
   }
