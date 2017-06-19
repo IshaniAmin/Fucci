@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
+    width: Dimensions.get('window').width,
   },
   capture: {
     width: 70,
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   },
   bottomOverlay: {
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,7 +94,7 @@ export default class CameraSnap extends React.Component {
   takePicture = () => {
     this.camera.capture()
       .then((data) => {
-        console.log(data);
+        console.log('picture', data);
         this.setState({ path: data.path })
       })
       .catch(err => console.error(err));
@@ -223,7 +222,7 @@ export default class CameraSnap extends React.Component {
 
       {/* Footer section of the Camera */}
         <View style={[styles.overlay, styles.bottomOverlay]}>
-        
+
         {/* Camera Button */}
           <TouchableHighlight
             style={styles.capture}
