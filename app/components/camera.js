@@ -175,7 +175,7 @@ export default class CameraSnap extends React.Component {
         console.log('recording', data)
       })
       .catch(err => {
-        console.error('recording', err)
+        console.log('recording', err)
     });
   }
 

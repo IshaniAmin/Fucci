@@ -91,7 +91,6 @@ export default class Home extends React.Component {
             style={styles.searchInput}
             value={this.state.password}
             onChange={this.handleChange}
-
             />  
 
         <TouchableHighlight
@@ -118,15 +117,15 @@ const styles = StyleSheet.create({
         padding: 30,
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: '#48BBEC'
+        backgroundColor: '#FF9000'
     },
     header : {
         marginBottom: 40,
         fontSize: 60,
         color: 'white',
         textAlign: 'center',
-        fontWeight: 'bold',
-        fontStyle: 'italic'
+        // fontWeight: 'bold',
+        fontFamily: 'Palatino-BoldItalic'
     },
     title: {
         marginBottom: 20,

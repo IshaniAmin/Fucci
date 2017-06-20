@@ -24,14 +24,16 @@ export default class Main extends React.Component {
 
 componentWillMount(){
 
-const newDate = moment().format('DD.MM.YYYY')
+// const newDate = moment().format('DD.MM.YYYY')
  
-console.log('Todays Date ' + newDate)
+// console.log('Todays Date ' + newDate)
 
-  fetch(`http://api.football-api.com/2.0/matches?match_date=${newDate}&to_date=${newDate}&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
-    .then(res => res.json())
+// ${newDate}
+
+  fetch(`http://api.football-api.com/2.0/matches?match_date=06.05.2017&to_date=06.05.2017&Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
+  .then(res => res.json())
     .then(matches => {
-      
+      console.log('test', matches[0])
     matches.map(function(match, index){
         matches[index]['league_name'] = null;
         return matches[index];
@@ -41,15 +43,15 @@ console.log('Todays Date ' + newDate)
       let leagueId = matches[index].comp_id;
       fetch(`http://api.football-api.com/2.0/competitions/${leagueId}?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76`)
        .then(res => res.json())
-      .then((leagueInfo) => {
-       // console.log('test', leagueInfo.name)
-       const leagueName = leagueInfo.name;
-       matches[index].league_name = leagueName;
-        // console.log('name', matches[index].league_name)
+        .then((leagueInfo) => {
+         // console.log('test', leagueInfo.name)
+         const leagueName = leagueInfo.name;
+         matches[index].league_name = leagueName;
+          // console.log('name', matches[index].league_name)
+          return matches[index];
+          }); 
         return matches[index];
-        }); return matches[index];
-        
-      })
+        })
       this.setState({
         matches : this.state.matches.cloneWithRows(matches)
       })
@@ -83,6 +85,7 @@ render() {
     return (
 
    <View style={styles.mainContainer}>
+
       <Text
       style={styles.title}>Todays Matches</Text>
       <Text style={styles.title}>{this.state.time}</Text>
