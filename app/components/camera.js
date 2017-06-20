@@ -11,6 +11,9 @@ import {
   Text,
   AppRegistry,
 } from 'react-native';
+
+import Video from 'react-native-video';
+
 import Camera from 'react-native-camera';
 
 const styles = StyleSheet.create({
@@ -35,17 +38,26 @@ const styles = StyleSheet.create({
   },
   cancel: {
     position: 'absolute',
-    left: 20,
-    top: 25,
+    left: 15,
+    top: 30,
     backgroundColor: 'transparent',
     color: '#FFF',
-    fontWeight: '600',
+    fontWeight: 'bold',
     fontSize: 25,
   },
   saveImage: {
     position: 'absolute',
     left: 20,
-    bottom: 35,
+    bottom: 30,
+    backgroundColor: 'transparent',
+    color: '#FFF',
+    fontWeight: '600',
+    fontSize: 25,
+  },
+  postImage: {
+    position: 'absolute',
+    left: 80,
+    bottom: 30,
     backgroundColor: 'transparent',
     color: '#FFF',
     fontWeight: '600',
@@ -80,6 +92,13 @@ const styles = StyleSheet.create({
   buttonsSpace: {
     width: 10,
   },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
 
 });
 
@@ -96,20 +115,82 @@ export default class CameraSnap extends React.Component {
         orientation: Camera.constants.Orientation.auto,
         flashMode: Camera.constants.FlashMode.auto,
         mirrorMode: false,
+        captureQuality: Camera.constants.CaptureQuality.high,
       }
+    }
   }
-}
 
   takePicture = () => {
-    this.camera.capture()
+    this.refs.cam.capture()
       .then((data) => {
         console.log('picture', data);
         this.setState({ path: data.path })
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error('photo', err)
+    });
   }
 
-  // // ============ Function that handles the front and back camera switch functionality ============= //
+// ========= POST REQUEST TO FIREBASE FOR IMAGES =========== //
+  postImage = () => {
+
+    // this.state.path = data.path
+    var imageUrl = this.state.path
+    console.log('image', imageUrl)
+    // This is what it looks like when we console.log  --- > 'image', '/var/mobile/Containers/Data/Application/A4CD902C-F3AC-4802-B6EB-D7D842CBF835/Documents/8F593AE0-7A9C-4D56-9CA3-7618794314EC.jpg'
+
+    // I'm not sure if we need to add additional keys to the object for the image because I'm thinking we can simply add the imageUrl as such.. but here's an example I found for posting an image to postman so maybe it's similar..
+       // ex. Object - > {uri: imageUrl, name: 'image.jpg', type:'image/jpg'}
+
+
+    // ====== Post request into Firebase ======== //
+
+
+
+
+
+
+
+
+
+
+
+    // At the end of this function we can route back to the camera or we can direct the user to the route allowing them to view stories .. TBD 
+
+
+
+  }
+
+  onPressIn() {
+    const recordVideo = setTimeout(this.startRecording.bind(this), 1000);
+  }
+
+  startRecording = () => {
+
+      this.refs.cam.capture({
+        mode: Camera.constants.CaptureMode.video,
+        totalSeconds: 10,
+      })
+      .then((data) => {
+        console.log('recording', data)
+      })
+      .catch(err => {
+        console.error('recording', err)
+    });
+  }
+
+  stopVideo = () => {
+    this.refs.cam.stopCapture()
+      .then((data) => {
+        console.log('video', data);
+    this.setState({ path: data.path })
+      })
+      .catch(err => {
+        console.error('video', err)
+    });
+  }
+
+  // // ============ handles the front and back camera switch functionality ============= //
 
   switchType = () => {
     let newType;
@@ -190,9 +271,7 @@ export default class CameraSnap extends React.Component {
     <View style={styles.container}>
  
       <Camera
-        ref={(cam) => {
-          this.camera = cam;
-        }}
+        ref="cam"
         style={styles.preview}
         aspect={this.state.camera.aspect}
         captureTarget={Camera.constants.CaptureTarget.disk}
@@ -201,7 +280,6 @@ export default class CameraSnap extends React.Component {
         onFocusChanged={() => {}}
         onZoomChanged={() => {}}
         defaultTouchToFocus
-        mirrorImage={this.state.mirrorMode}
         captureAudio={true}
         keepAwake={true}
       >
@@ -236,7 +314,7 @@ export default class CameraSnap extends React.Component {
           <TouchableHighlight
             style={styles.capture}
             onPress={this.takePicture.bind(this)}
-            underlayColor="rgba(255, 255, 255, 0.5)"
+                    underlayColor="rgba(255, 255, 255, 0.5)"
           >
             <View/>
           </TouchableHighlight>
@@ -254,6 +332,7 @@ export default class CameraSnap extends React.Component {
           source={{ uri: this.state.path }}
           style={styles.preview}
         />
+
       {/* Header Section */}
         <View style={[styles.overlay, styles.topOverlay]}>
           <Text
@@ -264,7 +343,7 @@ export default class CameraSnap extends React.Component {
         </View>
 
       {/* Footer section */}
-        <View style={[styles.overlay, styles.topOverlay]}>
+        <View style={[styles.overlay, styles.bottomOverlay]}>
           <Text
             style={styles.saveImage}
             onPress={() => this.setState({ camera: {
@@ -272,6 +351,11 @@ export default class CameraSnap extends React.Component {
             }}
           )}
           >SAVE
+          </Text>
+          <Text
+            style={styles.postImage}
+            onPress={this.postImage.bind(this)}
+          >STORY
           </Text>
         </View>
 
